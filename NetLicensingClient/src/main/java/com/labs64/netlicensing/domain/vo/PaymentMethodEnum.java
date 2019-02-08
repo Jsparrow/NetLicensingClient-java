@@ -19,29 +19,29 @@ import org.apache.commons.lang3.StringUtils;
  */
 public enum PaymentMethodEnum {
 
-    /**
-     * "null" payment method is a placeholder for undefined/unset value.
-     */
-    NULL,
+	/**
+	 * "null" payment method is a placeholder for undefined/unset value.
+	 */
+	NULL,
 
-    PAYPAL,
+	PAYPAL,
 
-    PAYPAL_SANDBOX,
+	PAYPAL_SANDBOX,
 
-    STRIPE,
+	STRIPE,
 
-    STRIPE_TESTING;
+	STRIPE_TESTING;
 
-    public static PaymentMethodEnum parseString(final String paymentMethod) {
-        if (StringUtils.isBlank(paymentMethod)) {
-            return null;
-        }
+	public static PaymentMethodEnum parseString(final String paymentMethod) {
+		if (StringUtils.isBlank(paymentMethod)) {
+			return null;
+		}
 
-        try {
-            return PaymentMethodEnum.valueOf(paymentMethod);
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
-    }
+		try {
+			return PaymentMethodEnum.valueOf(paymentMethod);
+		} catch (IllegalArgumentException e) {
+			return null;
+		}
+	}
 
 }

@@ -29,65 +29,69 @@ import com.labs64.netlicensing.util.CheckUtils;
  */
 public class PaymentMethodService {
 
-    /**
-     * Gets payment method by its number.
-     * 
-     * @param context
-     *            determines the vendor on whose behalf the call is performed
-     * @param number
-     *            the payment method number
-     * @return the payment method
-     * @throws com.labs64.netlicensing.exception.NetLicensingException
-     *             any subclass of {@linkplain com.labs64.netlicensing.exception.NetLicensingException}. These exceptions will be transformed to the
-     *             corresponding service response messages.
-     */
-    public static PaymentMethod get(final Context context, final String number) throws NetLicensingException {
-        CheckUtils.paramNotEmpty(number, "number");
+	/**
+	 * Gets payment method by its number.
+	 * 
+	 * @param context determines the vendor on whose behalf the call is performed
+	 * @param number  the payment method number
+	 * @return the payment method
+	 * @throws com.labs64.netlicensing.exception.NetLicensingException any subclass
+	 *         of
+	 *         {@linkplain com.labs64.netlicensing.exception.NetLicensingException}.
+	 *         These exceptions will be transformed to the corresponding service
+	 *         response messages.
+	 */
+	public static PaymentMethod get(final Context context, final String number) throws NetLicensingException {
+		CheckUtils.paramNotEmpty(number, "number");
 
-        return NetLicensingService.getInstance().get(context, Constants.PaymentMethod.ENDPOINT_PATH + "/" + number, null, PaymentMethod.class);
-    }
+		return NetLicensingService.getInstance().get(context, Constants.PaymentMethod.ENDPOINT_PATH + "/" + number,
+				null, PaymentMethod.class);
+	}
 
-    /**
-     * Returns payment methods of a vendor.
-     * 
-     * @param context
-     *            determines the vendor on whose behalf the call is performed
-     * @param filter
-     *            reserved for the future use, must be omitted / set to NULL
-     * @return collection of payment method entities or null/empty list if nothing found.
-     * @throws com.labs64.netlicensing.exception.NetLicensingException
-     *             any subclass of {@linkplain com.labs64.netlicensing.exception.NetLicensingException}. These exceptions will be transformed to the
-     *             corresponding service response messages.
-     */
-    public static Page<PaymentMethod> list(final Context context, final String filter) throws NetLicensingException {
-        final Map<String, Object> params = new HashMap<String, Object>();
-        if (StringUtils.isNotBlank(filter)) {
-            params.put(Constants.FILTER, filter);
-        }
-        return NetLicensingService.getInstance().list(context, Constants.PaymentMethod.ENDPOINT_PATH, params, PaymentMethod.class);
-    }
+	/**
+	 * Returns payment methods of a vendor.
+	 * 
+	 * @param context determines the vendor on whose behalf the call is performed
+	 * @param filter  reserved for the future use, must be omitted / set to NULL
+	 * @return collection of payment method entities or null/empty list if nothing
+	 *         found.
+	 * @throws com.labs64.netlicensing.exception.NetLicensingException any subclass
+	 *         of
+	 *         {@linkplain com.labs64.netlicensing.exception.NetLicensingException}.
+	 *         These exceptions will be transformed to the corresponding service
+	 *         response messages.
+	 */
+	public static Page<PaymentMethod> list(final Context context, final String filter) throws NetLicensingException {
+		final Map<String, Object> params = new HashMap<>();
+		if (StringUtils.isNotBlank(filter)) {
+			params.put(Constants.FILTER, filter);
+		}
+		return NetLicensingService.getInstance().list(context, Constants.PaymentMethod.ENDPOINT_PATH, params,
+				PaymentMethod.class);
+	}
 
-    /**
-     * Updates payment method properties.
-     * 
-     * @param context
-     *            determines the vendor on whose behalf the call is performed
-     * @param number
-     *            payment method number
-     * @param paymentMethod
-     *            non-null properties will be updated to the provided values, null properties will stay unchanged.
-     * @return updated PaymentMethod.
-     * @throws com.labs64.netlicensing.exception.NetLicensingException
-     *             any subclass of {@linkplain com.labs64.netlicensing.exception.NetLicensingException}. These exceptions will be transformed to the
-     *             corresponding service response messages.
-     */
-    public static PaymentMethod update(final Context context, final String number, final PaymentMethod paymentMethod)
-            throws NetLicensingException {
-        CheckUtils.paramNotEmpty(number, "number");
-        CheckUtils.paramNotNull(paymentMethod, "paymentMethod");
+	/**
+	 * Updates payment method properties.
+	 * 
+	 * @param context       determines the vendor on whose behalf the call is
+	 *                      performed
+	 * @param number        payment method number
+	 * @param paymentMethod non-null properties will be updated to the provided
+	 *                      values, null properties will stay unchanged.
+	 * @return updated PaymentMethod.
+	 * @throws com.labs64.netlicensing.exception.NetLicensingException any subclass
+	 *         of
+	 *         {@linkplain com.labs64.netlicensing.exception.NetLicensingException}.
+	 *         These exceptions will be transformed to the corresponding service
+	 *         response messages.
+	 */
+	public static PaymentMethod update(final Context context, final String number, final PaymentMethod paymentMethod)
+			throws NetLicensingException {
+		CheckUtils.paramNotEmpty(number, "number");
+		CheckUtils.paramNotNull(paymentMethod, "paymentMethod");
 
-        return NetLicensingService.getInstance().post(context, Constants.PaymentMethod.ENDPOINT_PATH + "/" + number,
-                paymentMethod.asRequestForm(), PaymentMethod.class);
-    }
+		return NetLicensingService.getInstance().post(context, Constants.PaymentMethod.ENDPOINT_PATH + "/" + number,
+				paymentMethod.asRequestForm(), PaymentMethod.class);
+	}
 
 }

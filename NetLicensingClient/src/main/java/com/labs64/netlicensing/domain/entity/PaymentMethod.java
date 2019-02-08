@@ -19,9 +19,9 @@ import java.util.Map;
  */
 public interface PaymentMethod extends BaseEntity {
 
-    // Methods for working with custom properties
+	// Methods for working with custom properties
 
-    @Deprecated
-    Map<String, String> getPaymentMethodProperties();
+	@Deprecated
+	Map<String, String> getPaymentMethodProperties();
 
 }

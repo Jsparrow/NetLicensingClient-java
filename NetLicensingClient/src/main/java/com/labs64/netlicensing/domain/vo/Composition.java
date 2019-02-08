@@ -19,66 +19,66 @@ import java.util.Map.Entry;
 
 public class Composition implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private Map<String, Composition> properties;
+	private Map<String, Composition> properties;
 
-    private String value;
+	private String value;
 
-    public Composition() { // list
-        value = null;
-    }
+	public Composition() { // list
+		value = null;
+	}
 
-    public Composition(final String value) { // property value
-        this.value = value;
-    }
+	public Composition(final String value) { // property value
+		this.value = value;
+	}
 
-    public Map<String, Composition> getProperties() {
-        if (properties == null) {
-            properties = new HashMap<String, Composition>();
-        }
-        return properties;
-    }
+	public Map<String, Composition> getProperties() {
+		if (properties == null) {
+			properties = new HashMap<>();
+		}
+		return properties;
+	}
 
-    public String getValue() {
-        return value;
-    }
+	public String getValue() {
+		return value;
+	}
 
-    public void setValue(final String value) {
-        this.value = value;
-    }
+	public void setValue(final String value) {
+		this.value = value;
+	}
 
-    public void put(final String key, final String value) {
-        getProperties().put(key, new Composition(value));
-    }
+	public void put(final String key, final String value) {
+		getProperties().put(key, new Composition(value));
+	}
 
-    public void put(final String key, final Composition value) {
-        getProperties().put(key, value);
-    }
+	public void put(final String key, final Composition value) {
+		getProperties().put(key, value);
+	}
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        if (value == null) {
-            sb.append("{");
-            if (properties == null) {
-                sb.append("<null>");
-            } else {
-                boolean first = true;
-                for (final Entry<String, Composition> prop : properties.entrySet()) {
-                    if (first) {
-                        first = false;
-                    } else {
-                        sb.append(", ");
-                    }
-                    sb.append(prop.getKey()).append("=").append(prop.getValue());
-                }
-            }
-            sb.append("}");
-        } else {
-            sb.append(value);
-        }
-        return sb.toString();
-    }
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder();
+		if (value == null) {
+			sb.append("{");
+			if (properties == null) {
+				sb.append("<null>");
+			} else {
+				boolean first = true;
+				for (final Entry<String, Composition> prop : properties.entrySet()) {
+					if (first) {
+						first = false;
+					} else {
+						sb.append(", ");
+					}
+					sb.append(prop.getKey()).append("=").append(prop.getValue());
+				}
+			}
+			sb.append("}");
+		} else {
+			sb.append(value);
+		}
+		return sb.toString();
+	}
 
 }

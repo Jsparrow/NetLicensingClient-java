@@ -17,11 +17,11 @@ package com.labs64.netlicensing.domain.vo;
  */
 public interface LicenseTypeProperties {
 
-    /**
-     * Gets the license type name.
-     * 
-     * @return the license type name
-     */
-    String getName();
+	/**
+	 * Gets the license type name.
+	 * 
+	 * @return the license type name
+	 */
+	String getName();
 
 }

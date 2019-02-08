@@ -34,85 +34,79 @@ import com.labs64.netlicensing.exception.NetLicensingException;
  */
 public class UtilityService {
 
-    /**
-     * Returns all license types.
-     *
-     * @param context
-     *            determines the vendor on whose behalf the call is performed
-     * @return collection of available license types or null/empty list if nothing found.
-     * @throws com.labs64.netlicensing.exception.NetLicensingException
-     *             any subclass of {@linkplain com.labs64.netlicensing.exception.NetLicensingException}. These exceptions
-     *             will be transformed to the corresponding service response messages.
-     */
-    public static Page<String> listLicenseTypes(final Context context) throws NetLicensingException {
-        final Page<LicenseTypeProperties> licenseTypes = NetLicensingService.getInstance().list(context,
-                Constants.Utility.ENDPOINT_PATH + "/licenseTypes", null, LicenseTypeProperties.class);
-        return new PageImpl<String>(
-                (List<String>) CollectionUtils.collect(licenseTypes.getContent(),
-                        new Transformer<LicenseTypeProperties, String>() {
+	/**
+	 * Returns all license types.
+	 *
+	 * @param context determines the vendor on whose behalf the call is performed
+	 * @return collection of available license types or null/empty list if nothing
+	 *         found.
+	 * @throws com.labs64.netlicensing.exception.NetLicensingException any subclass
+	 *         of
+	 *         {@linkplain com.labs64.netlicensing.exception.NetLicensingException}.
+	 *         These exceptions will be transformed to the corresponding service
+	 *         response messages.
+	 */
+	public static Page<String> listLicenseTypes(final Context context) throws NetLicensingException {
+		final Page<LicenseTypeProperties> licenseTypes = NetLicensingService.getInstance().list(context,
+				Constants.Utility.ENDPOINT_PATH + "/licenseTypes", null, LicenseTypeProperties.class);
+		return new PageImpl<>((List<String>) CollectionUtils.collect(licenseTypes.getContent(),
+				new Transformer<LicenseTypeProperties, String>() {
 
-                    @Override
-                    public String transform(final LicenseTypeProperties licenseType) {
-                        return licenseType.getName();
-                    }
-                }),
-                licenseTypes.getPageNumber(),
-                licenseTypes.getItemsNumber(),
-                licenseTypes.getTotalPages(),
-                licenseTypes.getTotalItems(),
-                licenseTypes.hasNext());
-    }
+					@Override
+					public String transform(final LicenseTypeProperties licenseType) {
+						return licenseType.getName();
+					}
+				}), licenseTypes.getPageNumber(), licenseTypes.getItemsNumber(), licenseTypes.getTotalPages(),
+				licenseTypes.getTotalItems(), licenseTypes.hasNext());
+	}
 
-    /**
-     * Returns all licensing models.
-     *
-     * @param context
-     *            determines the vendor on whose behalf the call is performed
-     * @return collection of available license models or null/empty list if nothing found.
-     * @throws com.labs64.netlicensing.exception.NetLicensingException
-     *             any subclass of {@linkplain com.labs64.netlicensing.exception.NetLicensingException}. These exceptions
-     *             will be transformed to the corresponding service response messages.
-     */
-    public static Page<String> listLicensingModels(final Context context) throws NetLicensingException {
+	/**
+	 * Returns all licensing models.
+	 *
+	 * @param context determines the vendor on whose behalf the call is performed
+	 * @return collection of available license models or null/empty list if nothing
+	 *         found.
+	 * @throws com.labs64.netlicensing.exception.NetLicensingException any subclass
+	 *         of
+	 *         {@linkplain com.labs64.netlicensing.exception.NetLicensingException}.
+	 *         These exceptions will be transformed to the corresponding service
+	 *         response messages.
+	 */
+	public static Page<String> listLicensingModels(final Context context) throws NetLicensingException {
 
-        final Page<LicensingModelProperties> licensingModels = NetLicensingService.getInstance().list(context,
-                Constants.Utility.ENDPOINT_PATH + "/licensingModels", null, LicensingModelProperties.class);
-        return new PageImpl<String>(
-                (List<String>) CollectionUtils.collect(licensingModels.getContent(),
-                        new Transformer<LicensingModelProperties, String>() {
+		final Page<LicensingModelProperties> licensingModels = NetLicensingService.getInstance().list(context,
+				Constants.Utility.ENDPOINT_PATH + "/licensingModels", null, LicensingModelProperties.class);
+		return new PageImpl<>((List<String>) CollectionUtils.collect(licensingModels.getContent(),
+				new Transformer<LicensingModelProperties, String>() {
 
-                    @Override
-                    public String transform(final LicensingModelProperties licensingModel) {
-                        return licensingModel.getName();
-                    }
-                }),
-                licensingModels.getPageNumber(),
-                licensingModels.getItemsNumber(),
-                licensingModels.getTotalPages(),
-                licensingModels.getTotalItems(),
-                licensingModels.hasNext());
-    }
+					@Override
+					public String transform(final LicensingModelProperties licensingModel) {
+						return licensingModel.getName();
+					}
+				}), licensingModels.getPageNumber(), licensingModels.getItemsNumber(), licensingModels.getTotalPages(),
+				licensingModels.getTotalItems(), licensingModels.hasNext());
+	}
 
-    /**
-     * Returns all countries.
-     *
-     * @param context
-     *            determines the vendor on whose behalf the call is performed
-     * @param filter
-     *            reserved for the future use, must be omitted / set to NULL
-     * @return collection of available countries or null/empty list if nothing found.
-     * @throws com.labs64.netlicensing.exception.NetLicensingException
-     *             any subclass of {@linkplain com.labs64.netlicensing.exception.NetLicensingException}. These
-     *             exceptions will be transformed to the corresponding service response messages.
-     */
-    public static Page<Country> listCountries(final Context context, final String filter) throws NetLicensingException {
-        final Map<String, Object> params = new HashMap<String, Object>();
-        if (StringUtils.isNotBlank(filter)) {
-            params.put(Constants.FILTER, filter);
-        }
-        return NetLicensingService.getInstance().list(context,
-                Constants.Utility.ENDPOINT_PATH + "/" + Constants.Country.ENDPOINT_PATH, params,
-                Country.class);
-    }
+	/**
+	 * Returns all countries.
+	 *
+	 * @param context determines the vendor on whose behalf the call is performed
+	 * @param filter  reserved for the future use, must be omitted / set to NULL
+	 * @return collection of available countries or null/empty list if nothing
+	 *         found.
+	 * @throws com.labs64.netlicensing.exception.NetLicensingException any subclass
+	 *         of
+	 *         {@linkplain com.labs64.netlicensing.exception.NetLicensingException}.
+	 *         These exceptions will be transformed to the corresponding service
+	 *         response messages.
+	 */
+	public static Page<Country> listCountries(final Context context, final String filter) throws NetLicensingException {
+		final Map<String, Object> params = new HashMap<>();
+		if (StringUtils.isNotBlank(filter)) {
+			params.put(Constants.FILTER, filter);
+		}
+		return NetLicensingService.getInstance().list(context,
+				Constants.Utility.ENDPOINT_PATH + "/" + Constants.Country.ENDPOINT_PATH, params, Country.class);
+	}
 
 }

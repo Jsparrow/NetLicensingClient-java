@@ -21,31 +21,31 @@ import com.labs64.netlicensing.domain.vo.Page;
  */
 public class ConsoleWriter {
 
-    public void writeMessage(final String msg) {
-        out.println(msg);
-        out.println();
-    }
+	public void writeMessage(final String msg) {
+		out.println(msg);
+		out.println();
+	}
 
-    public void writeException(final String msg, final Exception ex) {
-        out.println(msg);
-        ex.printStackTrace();
-        out.println();
-    }
+	public void writeException(final String msg, final Exception ex) {
+		out.println(msg);
+		ex.printStackTrace();
+		out.println();
+	}
 
-    public void writeObject(final String msg, final Object obj) {
-        out.println(msg);
-        out.println(obj);
-        out.println();
-    }
+	public void writeObject(final String msg, final Object obj) {
+		out.println(msg);
+		out.println(obj);
+		out.println();
+	}
 
-    public void writePage(final String msg, final Page<?> page) {
-        out.println(msg);
-        if (page != null && page.hasContent()) {
-            for (final Object object : page.getContent()) {
-                out.println(object);
-            }
-        }
-        out.println();
-    }
+	public void writePage(final String msg, final Page<?> page) {
+		out.println(msg);
+		if (page != null && page.hasContent()) {
+			for (final Object object : page.getContent()) {
+				out.println(object);
+			}
+		}
+		out.println();
+	}
 
 }

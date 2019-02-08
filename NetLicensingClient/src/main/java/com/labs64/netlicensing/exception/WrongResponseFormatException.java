@@ -13,21 +13,21 @@
 package com.labs64.netlicensing.exception;
 
 /**
- * The exception class that should be used when the content of the response of NetLicensing service doesn't meet
- * expectations that we impose on it.
+ * The exception class that should be used when the content of the response of
+ * NetLicensing service doesn't meet expectations that we impose on it.
  */
 public class WrongResponseFormatException extends NetLicensingException {
 
-    private static final long serialVersionUID = -2548284543777416222L;
+	private static final long serialVersionUID = -2548284543777416222L;
 
-    /**
-     * Construct a <code>ConversionException</code> with the specified detail message.
-     * 
-     * @param msg
-     *            the detail message
-     */
-    public WrongResponseFormatException(final String msg) {
-        super(msg);
-    }
+	/**
+	 * Construct a <code>ConversionException</code> with the specified detail
+	 * message.
+	 * 
+	 * @param msg the detail message
+	 */
+	public WrongResponseFormatException(final String msg) {
+		super(msg);
+	}
 
 }

@@ -19,74 +19,73 @@ import org.apache.commons.lang3.StringUtils;
  */
 public enum Currency {
 
-    NONE(""),
+	NONE(""),
 
-    EUR("EUR");
+	EUR("EUR");
 
-    private final String value;
+	private final String value;
 
-    /**
-     * Instantiates a new currency.
-     *
-     * @param currency
-     *            currency value
-     */
-    Currency(final String currency) {
-        value = currency;
-    }
+	/**
+	 * Instantiates a new currency.
+	 *
+	 * @param currency currency value
+	 */
+	Currency(final String currency) {
+		value = currency;
+	}
 
-    /**
-     * Get enum value.
-     *
-     * @return enum value
-     */
-    public String value() {
-        return value;
-    }
+	/**
+	 * Get enum value.
+	 *
+	 * @return enum value
+	 */
+	public String value() {
+		return value;
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Enum#toString()
-     */
-    @Override
-    public String toString() {
-        return value;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Enum#toString()
+	 */
+	@Override
+	public String toString() {
+		return value;
+	}
 
-    /**
-     * Parse currency value to {@link Currency} enum.
-     *
-     * @param value
-     *            currency value
-     * @return {@link Currency} enum object or throws {@link IllegalArgumentException} if no corresponding
-     *         {@link Currency} enum object found
-     */
-    public static Currency parseValue(final String value) {
-        for (final Currency currency : Currency.values()) {
-            if (currency.value.equalsIgnoreCase(value)) {
-                return currency;
-            }
-        }
-        if (value != null && StringUtils.isBlank(value)) {
-            return NONE;
-        }
-        throw new IllegalArgumentException(value);
-    }
+	/**
+	 * Parse currency value to {@link Currency} enum.
+	 *
+	 * @param value currency value
+	 * @return {@link Currency} enum object or throws
+	 *         {@link IllegalArgumentException} if no corresponding {@link Currency}
+	 *         enum object found
+	 */
+	public static Currency parseValue(final String value) {
+		for (final Currency currency : Currency.values()) {
+			if (currency.value.equalsIgnoreCase(value)) {
+				return currency;
+			}
+		}
+		if (value != null && StringUtils.isBlank(value)) {
+			return NONE;
+		}
+		throw new IllegalArgumentException(value);
+	}
 
-    /**
-     * Parse currency value to {@link Currency} enum, nothrow version.
-     *
-     * @param value
-     *            licenseType value as string
-     * @return {@link Currency} enum object or {@code null} if argument doesn't match any of the enum values
-     */
-    public static Currency parseValueSafe(final String value) {
-        try {
-            return parseValue(value);
-        } catch (final IllegalArgumentException e) {
-            return null;
-        }
-    }
+	/**
+	 * Parse currency value to {@link Currency} enum, nothrow version.
+	 *
+	 * @param value licenseType value as string
+	 * @return {@link Currency} enum object or {@code null} if argument doesn't
+	 *         match any of the enum values
+	 */
+	public static Currency parseValueSafe(final String value) {
+		try {
+			return parseValue(value);
+		} catch (final IllegalArgumentException e) {
+			return null;
+		}
+	}
 
 }

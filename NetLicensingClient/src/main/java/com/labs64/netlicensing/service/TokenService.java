@@ -29,77 +29,81 @@ import com.labs64.netlicensing.util.CheckUtils;
  */
 public class TokenService {
 
-    /**
-     * Gets token by its number.
-     * 
-     * @param context
-     *            determines the vendor on whose behalf the call is performed
-     * @param number
-     *            the token number
-     * @return the token
-     * @throws com.labs64.netlicensing.exception.NetLicensingException
-     *             any subclass of {@linkplain com.labs64.netlicensing.exception.NetLicensingException}. These
-     *             exceptions will be transformed to the corresponding service response messages.
-     */
-    public static Token get(final Context context, final String number) throws NetLicensingException {
-        CheckUtils.paramNotEmpty(number, "number");
+	/**
+	 * Gets token by its number.
+	 * 
+	 * @param context determines the vendor on whose behalf the call is performed
+	 * @param number  the token number
+	 * @return the token
+	 * @throws com.labs64.netlicensing.exception.NetLicensingException any subclass
+	 *         of
+	 *         {@linkplain com.labs64.netlicensing.exception.NetLicensingException}.
+	 *         These exceptions will be transformed to the corresponding service
+	 *         response messages.
+	 */
+	public static Token get(final Context context, final String number) throws NetLicensingException {
+		CheckUtils.paramNotEmpty(number, "number");
 
-        return NetLicensingService.getInstance().get(context, Constants.Token.ENDPOINT_PATH + "/" + number, null, Token.class);
-    }
+		return NetLicensingService.getInstance().get(context, Constants.Token.ENDPOINT_PATH + "/" + number, null,
+				Token.class);
+	}
 
-    /**
-     * Returns tokens of a vendor.
-     *
-     * @param context
-     *            determines the vendor on whose behalf the call is performed
-     * @param filter
-     *            additional criteria to filter type of tokens to return, if NULL return tokens of all types
-     * @return collection of token entities or null/empty list if nothing found.
-     * @throws com.labs64.netlicensing.exception.NetLicensingException
-     *             any subclass of {@linkplain com.labs64.netlicensing.exception.NetLicensingException}. These
-     *             exceptions will be transformed to the corresponding service response messages.
-     */
-    public static Page<Token> list(final Context context, final String filter) throws NetLicensingException {
-        final Map<String, Object> params = new HashMap<String, Object>();
-        if (StringUtils.isNotBlank(filter)) {
-            params.put(Constants.FILTER, filter);
-        }
-        return NetLicensingService.getInstance().list(context, Constants.Token.ENDPOINT_PATH, params, Token.class);
-    }
+	/**
+	 * Returns tokens of a vendor.
+	 *
+	 * @param context determines the vendor on whose behalf the call is performed
+	 * @param filter  additional criteria to filter type of tokens to return, if
+	 *                NULL return tokens of all types
+	 * @return collection of token entities or null/empty list if nothing found.
+	 * @throws com.labs64.netlicensing.exception.NetLicensingException any subclass
+	 *         of
+	 *         {@linkplain com.labs64.netlicensing.exception.NetLicensingException}.
+	 *         These exceptions will be transformed to the corresponding service
+	 *         response messages.
+	 */
+	public static Page<Token> list(final Context context, final String filter) throws NetLicensingException {
+		final Map<String, Object> params = new HashMap<>();
+		if (StringUtils.isNotBlank(filter)) {
+			params.put(Constants.FILTER, filter);
+		}
+		return NetLicensingService.getInstance().list(context, Constants.Token.ENDPOINT_PATH, params, Token.class);
+	}
 
-    /**
-     * Creates new token.
-     *
-     * @param context
-     *            determines the vendor on whose behalf the call is performed
-     * @param token
-     *            non-null properties will be updated to the provided values, null properties will stay unchanged.
-     * @return created token
-     * @throws com.labs64.netlicensing.exception.NetLicensingException
-     *             any subclass of {@linkplain com.labs64.netlicensing.exception.NetLicensingException}. These
-     *             exceptions will be transformed to the corresponding service response messages.
-     */
-    public static Token create(final Context context, final Token token) throws NetLicensingException {
-        CheckUtils.paramNotNull(token, "token");
+	/**
+	 * Creates new token.
+	 *
+	 * @param context determines the vendor on whose behalf the call is performed
+	 * @param token   non-null properties will be updated to the provided values,
+	 *                null properties will stay unchanged.
+	 * @return created token
+	 * @throws com.labs64.netlicensing.exception.NetLicensingException any subclass
+	 *         of
+	 *         {@linkplain com.labs64.netlicensing.exception.NetLicensingException}.
+	 *         These exceptions will be transformed to the corresponding service
+	 *         response messages.
+	 */
+	public static Token create(final Context context, final Token token) throws NetLicensingException {
+		CheckUtils.paramNotNull(token, "token");
 
-        return NetLicensingService.getInstance().post(context, Constants.Token.ENDPOINT_PATH, token.asRequestForm(), Token.class);
-    }
+		return NetLicensingService.getInstance().post(context, Constants.Token.ENDPOINT_PATH, token.asRequestForm(),
+				Token.class);
+	}
 
-    /**
-     * Delete token by its number.
-     *
-     * @param context
-     *            determines the vendor on whose behalf the call is performed
-     * @param number
-     *            the token number
-     * @throws com.labs64.netlicensing.exception.NetLicensingException
-     *             any subclass of {@linkplain com.labs64.netlicensing.exception.NetLicensingException}. These
-     *             exceptions will be transformed to the corresponding service response messages.
-     */
-    public static void delete(final Context context, final String number) throws NetLicensingException {
-        CheckUtils.paramNotEmpty(number, "number");
+	/**
+	 * Delete token by its number.
+	 *
+	 * @param context determines the vendor on whose behalf the call is performed
+	 * @param number  the token number
+	 * @throws com.labs64.netlicensing.exception.NetLicensingException any subclass
+	 *         of
+	 *         {@linkplain com.labs64.netlicensing.exception.NetLicensingException}.
+	 *         These exceptions will be transformed to the corresponding service
+	 *         response messages.
+	 */
+	public static void delete(final Context context, final String number) throws NetLicensingException {
+		CheckUtils.paramNotEmpty(number, "number");
 
-        NetLicensingService.getInstance().delete(context, Constants.Token.ENDPOINT_PATH + "/" + number, null);
-    }
+		NetLicensingService.getInstance().delete(context, Constants.Token.ENDPOINT_PATH + "/" + number, null);
+	}
 
 }

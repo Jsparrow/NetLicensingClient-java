@@ -23,78 +23,79 @@ import com.labs64.netlicensing.domain.entity.Token;
 import com.labs64.netlicensing.domain.vo.TokenType;
 
 /**
- * Default implementation of {@link com.labs64.netlicensing.domain.entity.Token}.
+ * Default implementation of
+ * {@link com.labs64.netlicensing.domain.entity.Token}.
  */
 public class TokenImpl extends BaseEntityImpl implements Token {
 
-    private static final long serialVersionUID = 6688976030475491351L;
+	private static final long serialVersionUID = 6688976030475491351L;
 
-    private String vendorNumber;
+	private String vendorNumber;
 
-    private Date expirationTime;
+	private Date expirationTime;
 
-    private TokenType tokenType;
+	private TokenType tokenType;
 
-    /**
-     * @see BaseEntityImpl#getReservedProps()
-     */
-    public static List<String> getReservedProps() {
-        final List<String> reserved = BaseEntityImpl.getReservedProps();
-        reserved.add(Constants.Token.EXPIRATION_TIME);
-        reserved.add(Constants.Token.TOKEN_TYPE);
-        return reserved;
-    }
+	/**
+	 * @see BaseEntityImpl#getReservedProps()
+	 */
+	public static List<String> getReservedProps() {
+		final List<String> reserved = BaseEntityImpl.getReservedProps();
+		reserved.add(Constants.Token.EXPIRATION_TIME);
+		reserved.add(Constants.Token.TOKEN_TYPE);
+		return reserved;
+	}
 
-    @Override
-    public String getVendorNumber() {
-        return vendorNumber;
-    }
+	@Override
+	public String getVendorNumber() {
+		return vendorNumber;
+	}
 
-    @Override
-    public void setVendorNumber(final String vendorNumber) {
-        this.vendorNumber = vendorNumber;
-    }
+	@Override
+	public void setVendorNumber(final String vendorNumber) {
+		this.vendorNumber = vendorNumber;
+	}
 
-    @Override
-    public Date getExpirationTime() {
-        if (expirationTime == null) {
-            return null;
-        } else {
-            return new Date(expirationTime.getTime());
-        }
-    }
+	@Override
+	public Date getExpirationTime() {
+		if (expirationTime == null) {
+			return null;
+		} else {
+			return new Date(expirationTime.getTime());
+		}
+	}
 
-    @Override
-    public void setExpirationTime(final Date expirationTime) {
-        if (expirationTime == null) {
-            this.expirationTime = null;
-        } else {
-            this.expirationTime = new Date(expirationTime.getTime());
-        }
-    }
+	@Override
+	public void setExpirationTime(final Date expirationTime) {
+		if (expirationTime == null) {
+			this.expirationTime = null;
+		} else {
+			this.expirationTime = new Date(expirationTime.getTime());
+		}
+	}
 
-    @Override
-    public TokenType getTokenType() {
-        return tokenType;
-    }
+	@Override
+	public TokenType getTokenType() {
+		return tokenType;
+	}
 
-    @Override
-    public void setTokenType(final TokenType tokenType) {
-        this.tokenType = tokenType;
-    }
+	@Override
+	public void setTokenType(final TokenType tokenType) {
+		this.tokenType = tokenType;
+	}
 
-    @Override
-    public Map<String, String> getTokenProperties() {
-        return getProperties();
-    }
+	@Override
+	public Map<String, String> getTokenProperties() {
+		return getProperties();
+	}
 
-    @Override
-    protected MultivaluedMap<String, Object> asPropertiesMap() {
-        final MultivaluedMap<String, Object> map = super.asPropertiesMap();
-        map.add(Constants.Token.EXPIRATION_TIME, getExpirationTime());
-        map.add(Constants.Token.TOKEN_TYPE, getTokenType());
-        map.add(Constants.Token.TOKEN_PROP_VENDORNUMBER, getVendorNumber());
-        return map;
-    }
+	@Override
+	protected MultivaluedMap<String, Object> asPropertiesMap() {
+		final MultivaluedMap<String, Object> map = super.asPropertiesMap();
+		map.add(Constants.Token.EXPIRATION_TIME, getExpirationTime());
+		map.add(Constants.Token.TOKEN_TYPE, getTokenType());
+		map.add(Constants.Token.TOKEN_PROP_VENDORNUMBER, getVendorNumber());
+		return map;
+	}
 
 }
