@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 public interface LicenseTransactionJoin extends Serializable {
 
-    void setTransaction(final Transaction transaction);
+	void setTransaction(final Transaction transaction);
 
-    Transaction getTransaction();
+	Transaction getTransaction();
 
-    void setLicense(final License license);
+	void setLicense(final License license);
 
-    License getLicense();
+	License getLicense();
 }

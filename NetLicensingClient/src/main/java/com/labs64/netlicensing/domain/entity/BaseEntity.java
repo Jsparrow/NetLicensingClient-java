@@ -22,30 +22,30 @@ import javax.ws.rs.core.Form;
  */
 public interface BaseEntity extends Serializable {
 
-    // Methods for working with properties
+	// Methods for working with properties
 
-    String getNumber();
+	String getNumber();
 
-    void setNumber(String number);
+	void setNumber(String number);
 
-    Boolean getActive();
+	Boolean getActive();
 
-    void setActive(Boolean active);
+	void setActive(Boolean active);
 
-    // Methods for working with custom properties
+	// Methods for working with custom properties
 
-    Map<String, String> getProperties();
+	Map<String, String> getProperties();
 
-    void addProperty(String property, String value);
+	void addProperty(String property, String value);
 
-    void removeProperty(final String property);
+	void removeProperty(final String property);
 
-    /**
-     * Converts properties of the entity to the body of POST request
-     *
-     * @return object that represents HTML form data request encoded using the "application/x-www-form-urlencoded"
-     *         content type
-     */
-    Form asRequestForm();
+	/**
+	 * Converts properties of the entity to the body of POST request
+	 *
+	 * @return object that represents HTML form data request encoded using the
+	 *         "application/x-www-form-urlencoded" content type
+	 */
+	Form asRequestForm();
 
 }

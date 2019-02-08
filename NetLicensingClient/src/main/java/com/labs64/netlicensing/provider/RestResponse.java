@@ -18,40 +18,39 @@ import javax.ws.rs.core.MultivaluedMap;
 /**
  * Contains info about response together with response entity.
  * 
- * @param <T>
- *            type of response entity
+ * @param <T> type of response entity
  */
 public class RestResponse<T> {
 
-    private int statusCode;
-    
-    private MultivaluedMap<String, Object> headers;
+	private int statusCode;
 
-    private T entity;
+	private MultivaluedMap<String, Object> headers;
 
-    public int getStatusCode() {
-        return this.statusCode;
-    }
+	private T entity;
 
-    public void setStatusCode(final int statusCode) {
-        this.statusCode = statusCode;
-    }
-    
-    public MultivaluedMap<String, Object> getHeaders() {
-        return this.headers;
-    }
-    
-    public void setHeaders(MultivaluedMap<String, Object> headers) {
-        this.headers = new MultivaluedHashMap<String, Object>();
-        this.headers.putAll(headers);
-    }
+	public int getStatusCode() {
+		return this.statusCode;
+	}
 
-    public T getEntity() {
-        return this.entity;
-    }
+	public void setStatusCode(final int statusCode) {
+		this.statusCode = statusCode;
+	}
 
-    public void setEntity(final T entity) {
-        this.entity = entity;
-    }
+	public MultivaluedMap<String, Object> getHeaders() {
+		return this.headers;
+	}
+
+	public void setHeaders(MultivaluedMap<String, Object> headers) {
+		this.headers = new MultivaluedHashMap<>();
+		this.headers.putAll(headers);
+	}
+
+	public T getEntity() {
+		return this.entity;
+	}
+
+	public void setEntity(final T entity) {
+		this.entity = entity;
+	}
 
 }

@@ -17,136 +17,122 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Basic {@code Page} implementation.
  * 
- * @param <Entity>
- *            the type of which the page consists.
+ * @param <Entity> the type of which the page consists.
  */
 public class PageImpl<Entity> implements Page<Entity>, Serializable {
 
-    private static final long serialVersionUID = 867755906494344406L;
+	private static final Logger logger = LoggerFactory.getLogger(PageImpl.class);
 
-    private final List<Entity> content = new ArrayList<Entity>();
-    private final int pageNumber;
-    private final int itemsNumber;
-    private final int totalPages;
-    private final long totalItems;
-    private final boolean hasNext;
+	private static final long serialVersionUID = 867755906494344406L;
 
-    /**
-     * Constructor of {@code PageImpl}.
-     * 
-     * @param content
-     *            the content of this page, must not be {@literal null}.
-     * @param pageNumber
-     *            the number of the current page
-     * @param itemsNumber
-     *            the number of elements on the page
-     * @param totalPages
-     *            the number of total pages
-     * @param totalItems
-     *            the total amount of elements
-     * @param hasNext
-     *            is there a next page exists
-     */
-    public PageImpl(final List<Entity> content, final int pageNumber, final int itemsNumber, final int totalPages,
-            final long totalItems, final boolean hasNext) {
-        assert content != null : "Content must not be null!";
+	private final List<Entity> content = new ArrayList<>();
+	private final int pageNumber;
+	private final int itemsNumber;
+	private final int totalPages;
+	private final long totalItems;
+	private final boolean hasNext;
 
-        this.content.addAll(content);
+	/**
+	 * Constructor of {@code PageImpl}.
+	 * 
+	 * @param content     the content of this page, must not be {@literal null}.
+	 * @param pageNumber  the number of the current page
+	 * @param itemsNumber the number of elements on the page
+	 * @param totalPages  the number of total pages
+	 * @param totalItems  the total amount of elements
+	 * @param hasNext     is there a next page exists
+	 */
+	public PageImpl(final List<Entity> content, final int pageNumber, final int itemsNumber, final int totalPages,
+			final long totalItems, final boolean hasNext) {
+		assert content != null : "Content must not be null!";
 
-        this.pageNumber = pageNumber;
-        this.itemsNumber = itemsNumber;
-        this.totalPages = totalPages;
-        this.totalItems = totalItems;
-        this.hasNext = hasNext;
-    }
+		this.content.addAll(content);
 
-    /**
-     * Safe create instance of {@code Page}.
-     * 
-     * @param content
-     *            the content of this page, must not be {@literal null}.
-     * @param pageNumber
-     *            the number of the current page
-     * @param itemsNumber
-     *            the number of elements on the page
-     * @param totalPages
-     *            the number of total pages
-     * @param totalItems
-     *            the total amount of elements
-     * @param hasNext
-     *            is there a next page exists
-     * @param <E>
-     *            type of page entity
-     */
-    public static <E> PageImpl<E> createInstance(final List<E> content,
-            final String pageNumber, final String itemsNumber,
-            final String totalPages, final String totalItems, final String hasNext) {
-        try {
-            return new PageImpl<E>(content,
-                    Integer.valueOf(pageNumber),
-                    Integer.valueOf(itemsNumber),
-                    Integer.valueOf(totalPages),
-                    Long.valueOf(totalItems),
-                    Boolean.valueOf(hasNext));
-        } catch (Exception e) {
-            return new PageImpl<E>(content, 0, 0, 0, 0, false);
-        }
-    }
+		this.pageNumber = pageNumber;
+		this.itemsNumber = itemsNumber;
+		this.totalPages = totalPages;
+		this.totalItems = totalItems;
+		this.hasNext = hasNext;
+	}
 
-    @Override
-    public int getPageNumber() {
-        return pageNumber;
-    }
+	/**
+	 * Safe create instance of {@code Page}.
+	 * 
+	 * @param content     the content of this page, must not be {@literal null}.
+	 * @param pageNumber  the number of the current page
+	 * @param itemsNumber the number of elements on the page
+	 * @param totalPages  the number of total pages
+	 * @param totalItems  the total amount of elements
+	 * @param hasNext     is there a next page exists
+	 * @param             <E> type of page entity
+	 */
+	public static <E> PageImpl<E> createInstance(final List<E> content, final String pageNumber,
+			final String itemsNumber, final String totalPages, final String totalItems, final String hasNext) {
+		try {
+			return new PageImpl<>(content, Integer.valueOf(pageNumber), Integer.valueOf(itemsNumber),
+					Integer.valueOf(totalPages), Long.valueOf(totalItems), Boolean.valueOf(hasNext));
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return new PageImpl<>(content, 0, 0, 0, 0, false);
+		}
+	}
 
-    @Override
-    public int getItemsNumber() {
-        return itemsNumber;
-    }
+	@Override
+	public int getPageNumber() {
+		return pageNumber;
+	}
 
-    @Override
-    public int getTotalPages() {
-        return totalPages;
-    }
+	@Override
+	public int getItemsNumber() {
+		return itemsNumber;
+	}
 
-    @Override
-    public long getTotalItems() {
-        return totalItems;
-    }
+	@Override
+	public int getTotalPages() {
+		return totalPages;
+	}
 
-    @Override
-    public boolean hasNext() {
-        return hasNext;
-    }
+	@Override
+	public long getTotalItems() {
+		return totalItems;
+	}
 
-    @Override
-    public Iterator<Entity> iterator() {
-        return content.iterator();
-    }
+	@Override
+	public boolean hasNext() {
+		return hasNext;
+	}
 
-    @Override
-    public List<Entity> getContent() {
-        return Collections.unmodifiableList(content);
-    }
+	@Override
+	public Iterator<Entity> iterator() {
+		return content.iterator();
+	}
 
-    @Override
-    public boolean hasContent() {
-        return !content.isEmpty();
-    }
+	@Override
+	public List<Entity> getContent() {
+		return Collections.unmodifiableList(content);
+	}
 
-    @Override
-    public String toString() {
-        String contentType = "UNKNOWN";
-        List<Entity> content = getContent();
+	@Override
+	public boolean hasContent() {
+		return !content.isEmpty();
+	}
 
-        if (hasContent()) {
-            contentType = content.get(0).getClass().getName();
-        }
+	@Override
+	public String toString() {
+		String contentType = "UNKNOWN";
+		List<Entity> content = getContent();
 
-        return String.format("Page %s of %d containing %s instances", getPageNumber(), getTotalPages(), contentType);
-    }
+		if (hasContent()) {
+			contentType = content.get(0).getClass().getName();
+		}
+
+		return String.format("Page %s of %d containing %s instances", getPageNumber(), getTotalPages(), contentType);
+	}
 
 }

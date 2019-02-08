@@ -13,35 +13,40 @@
 package com.labs64.netlicensing.domain.vo;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This enum defines payment methods supported by NetLicensing.
  */
 public enum PaymentMethodEnum {
 
-    /**
-     * "null" payment method is a placeholder for undefined/unset value.
-     */
-    NULL,
+	/**
+	 * "null" payment method is a placeholder for undefined/unset value.
+	 */
+	NULL,
 
-    PAYPAL,
+	PAYPAL,
 
-    PAYPAL_SANDBOX,
+	PAYPAL_SANDBOX,
 
-    STRIPE,
+	STRIPE,
 
-    STRIPE_TESTING;
+	STRIPE_TESTING;
 
-    public static PaymentMethodEnum parseString(final String paymentMethod) {
-        if (StringUtils.isBlank(paymentMethod)) {
-            return null;
-        }
+	private static final Logger logger = LoggerFactory.getLogger(PaymentMethodEnum.class);
 
-        try {
-            return PaymentMethodEnum.valueOf(paymentMethod);
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
-    }
+	public static PaymentMethodEnum parseString(final String paymentMethod) {
+		if (StringUtils.isBlank(paymentMethod)) {
+			return null;
+		}
+
+		try {
+			return PaymentMethodEnum.valueOf(paymentMethod);
+		} catch (IllegalArgumentException e) {
+			logger.error(e.getMessage(), e);
+			return null;
+		}
+	}
 
 }

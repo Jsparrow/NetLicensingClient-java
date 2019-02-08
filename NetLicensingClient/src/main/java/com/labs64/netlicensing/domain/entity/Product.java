@@ -21,61 +21,67 @@ import java.util.Map;
  * <p>
  * Properties visible via NetLicensing API:
  * <p>
- * <b>number</b> - Unique number that identifies the product. Vendor can assign this number when creating a product or
- * let NetLicensing generate one. Read-only after creation of the first licensee for the product.
+ * <b>number</b> - Unique number that identifies the product. Vendor can assign
+ * this number when creating a product or let NetLicensing generate one.
+ * Read-only after creation of the first licensee for the product.
  * <p>
- * <b>active</b> - If set to false, the product is disabled. No new licensees can be registered for the product,
- * existing licensees can not obtain new licenses.
+ * <b>active</b> - If set to false, the product is disabled. No new licensees
+ * can be registered for the product, existing licensees can not obtain new
+ * licenses.
  * <p>
- * <b>name</b> - Product name. Together with the version identifies the product for the end customer.
+ * <b>name</b> - Product name. Together with the version identifies the product
+ * for the end customer.
  * <p>
- * <b>version</b> - Product version. Convenience parameter, additional to the product name.
+ * <b>version</b> - Product version. Convenience parameter, additional to the
+ * product name.
  * <p>
- * <b>licenseeAutoCreate</b> - If set to 'true', non-existing licensees will be created at first validation attempt.
+ * <b>licenseeAutoCreate</b> - If set to 'true', non-existing licensees will be
+ * created at first validation attempt.
  * <p>
  * <b>description</b> - Product description. Optional.
  * <p>
  * <b>licensingInfo</b> - Licensing information. Optional.
  * <p>
- * Arbitrary additional user properties of string type may be associated with each product. The name of user property
- * must not be equal to any of the fixed property names listed above and must be none of <b>id, deleted</b>.
+ * Arbitrary additional user properties of string type may be associated with
+ * each product. The name of user property must not be equal to any of the fixed
+ * property names listed above and must be none of <b>id, deleted</b>.
  */
 public interface Product extends BaseEntity {
 
-    // Methods for working with properties
+	// Methods for working with properties
 
-    String getName();
+	String getName();
 
-    void setName(String name);
+	void setName(String name);
 
-    String getVersion();
+	String getVersion();
 
-    void setVersion(String version);
+	void setVersion(String version);
 
-    Boolean getLicenseeAutoCreate();
+	Boolean getLicenseeAutoCreate();
 
-    void setLicenseeAutoCreate(Boolean licenseeAutoCreate);
+	void setLicenseeAutoCreate(Boolean licenseeAutoCreate);
 
-    String getDescription();
+	String getDescription();
 
-    void setDescription(String description);
+	void setDescription(String description);
 
-    String getLicensingInfo();
+	String getLicensingInfo();
 
-    void setLicensingInfo(String licensingInfo);
+	void setLicensingInfo(String licensingInfo);
 
-    // Methods for working with custom properties
+	// Methods for working with custom properties
 
-    @Deprecated
-    Map<String, String> getProductProperties();
+	@Deprecated
+	Map<String, String> getProductProperties();
 
-    // Methods for interacting with other entities
+	// Methods for interacting with other entities
 
-    Collection<ProductModule> getProductModules();
+	Collection<ProductModule> getProductModules();
 
-    Collection<Licensee> getLicensees();
+	Collection<Licensee> getLicensees();
 
-    List<ProductDiscount> getProductDiscounts();
+	List<ProductDiscount> getProductDiscounts();
 
-    void addDiscount(ProductDiscount discount);
+	void addDiscount(ProductDiscount discount);
 }

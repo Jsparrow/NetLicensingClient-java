@@ -21,65 +21,58 @@ import com.labs64.netlicensing.provider.auth.Authentication;
  */
 public interface RestProvider {
 
-    public interface Configuration {
+	/**
+	 * Helper method for performing REST requests with optional REST parameter map.
+	 * <p>
+	 * This method has a long list of parameters. It is only intended for internal
+	 * use.
+	 *
+	 * @param method       the HTTP method to be used, i.e. GET, PUT, POST.
+	 * @param urlTemplate  the REST URL urlTemplate.
+	 * @param request      optional: The request body to be sent to the server. May
+	 *                     be null.
+	 * @param responseType optional: expected response type. In case no responseType
+	 *                     body is expected, responseType may be null.
+	 * @param queryParams  optional: The REST query parameters values. May be null.
+	 * @param              <REQ> type of the request entity
+	 * @param              <RES> type of the responseType entity
+	 * @return the responseType entity received from the server, or null if
+	 *         responseType is null.
+	 */
+	<REQ, RES> RestResponse<RES> call(String method, String urlTemplate, REQ request, Class<RES> responseType,
+			Map<String, Object> queryParams) throws RestException;
 
-        String getUserAgent();
+	/**
+	 * @param username username used for authentication
+	 * @param password password used for authentication
+	 * @return authenticated RESTful provider
+	 */
+	RestProvider authenticate(String username, String password);
 
-        boolean isLoggingEnabled();
+	/**
+	 * @param token token used for authentication
+	 * @return authenticated RESTful provider
+	 */
+	RestProvider authenticate(String token);
 
-    }
+	/**
+	 * @param authentication {@link Authentication} object
+	 * @return authenticated RESTful provider
+	 */
+	RestProvider authenticate(Authentication authentication);
 
-    /**
-     * Helper method for performing REST requests with optional REST parameter map.
-     * <p>
-     * This method has a long list of parameters. It is only intended for internal use.
-     *
-     * @param method
-     *            the HTTP method to be used, i.e. GET, PUT, POST.
-     * @param urlTemplate
-     *            the REST URL urlTemplate.
-     * @param request
-     *            optional: The request body to be sent to the server. May be null.
-     * @param responseType
-     *            optional: expected response type. In case no responseType body is expected, responseType may be null.
-     * @param queryParams
-     *            optional: The REST query parameters values. May be null.
-     * @param <REQ>
-     *            type of the request entity
-     * @param <RES>
-     *            type of the responseType entity
-     * @return the responseType entity received from the server, or null if responseType is null.
-     */
-    <REQ, RES> RestResponse<RES> call(String method, String urlTemplate, REQ request, Class<RES> responseType,
-            Map<String, Object> queryParams) throws RestException;
+	/**
+	 * @param configuration {@link Configuration} configuration to use for the
+	 *                      provider
+	 */
+	void configure(Configuration configuration);
 
-    /**
-     * @param username
-     *            username used for authentication
-     * @param password
-     *            password used for authentication
-     * @return authenticated RESTful provider
-     */
-    RestProvider authenticate(String username, String password);
+	public interface Configuration {
 
-    /**
-     * @param token
-     *            token used for authentication
-     * @return authenticated RESTful provider
-     */
-    RestProvider authenticate(String token);
+		String getUserAgent();
 
-    /**
-     * @param authentication
-     *            {@link Authentication} object
-     * @return authenticated RESTful provider
-     */
-    RestProvider authenticate(Authentication authentication);
+		boolean isLoggingEnabled();
 
-    /**
-     * @param configuration
-     *            {@link Configuration} configuration to use for the provider
-     */
-    void configure(Configuration configuration);
+	}
 
 }

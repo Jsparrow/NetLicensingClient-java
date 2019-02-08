@@ -20,41 +20,44 @@ import java.util.Map;
  * <p>
  * Properties visible via NetLicensing API:
  * <p>
- * <b>number</b> - Unique number (across all products of a vendor) that identifies the product module. Vendor can assign
- * this number when creating a product module or let NetLicensing generate one. Read-only after creation of the first
- * licensee for the product.
+ * <b>number</b> - Unique number (across all products of a vendor) that
+ * identifies the product module. Vendor can assign this number when creating a
+ * product module or let NetLicensing generate one. Read-only after creation of
+ * the first licensee for the product.
  * <p>
- * <b>active</b> - If set to false, the product module is disabled. Licensees can not obtain any new licenses for this
- * product module.
+ * <b>active</b> - If set to false, the product module is disabled. Licensees
+ * can not obtain any new licenses for this product module.
  * <p>
- * <b>name</b> - Product module name that is visible to the end customers in NetLicensing Shop.
+ * <b>name</b> - Product module name that is visible to the end customers in
+ * NetLicensing Shop.
  * <p>
- * <b>licensingModel</b> - Licensing model applied to this product module. Defines what license templates can be
- * configured for the product module and how licenses for this product module are processed during validation.
+ * <b>licensingModel</b> - Licensing model applied to this product module.
+ * Defines what license templates can be configured for the product module and
+ * how licenses for this product module are processed during validation.
  */
 public interface ProductModule extends BaseEntity {
 
-    // Methods for working with properties
+	// Methods for working with properties
 
-    String getName();
+	String getName();
 
-    void setName(String name);
+	void setName(String name);
 
-    String getLicensingModel();
+	String getLicensingModel();
 
-    void setLicensingModel(String licensingModel);
+	void setLicensingModel(String licensingModel);
 
-    // Methods for working with custom properties
+	// Methods for working with custom properties
 
-    @Deprecated
-    Map<String, String> getProductModuleProperties();
+	@Deprecated
+	Map<String, String> getProductModuleProperties();
 
-    // Methods for interacting with other entities
+	// Methods for interacting with other entities
 
-    Product getProduct();
+	Product getProduct();
 
-    void setProduct(Product product);
+	void setProduct(Product product);
 
-    Collection<LicenseTemplate> getLicenseTemplates();
+	Collection<LicenseTemplate> getLicenseTemplates();
 
 }

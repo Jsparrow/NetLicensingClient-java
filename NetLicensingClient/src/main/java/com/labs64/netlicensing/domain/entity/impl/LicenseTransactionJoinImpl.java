@@ -18,26 +18,26 @@ import com.labs64.netlicensing.domain.entity.Transaction;
 
 public class LicenseTransactionJoinImpl implements LicenseTransactionJoin {
 
-    private Transaction transaction;
-    private License license;
+	private Transaction transaction;
+	private License license;
 
-    @Override
-    public void setTransaction(final Transaction transaction) {
-        this.transaction = transaction;
-    }
+	@Override
+	public void setTransaction(final Transaction transaction) {
+		this.transaction = transaction;
+	}
 
-    @Override
-    public Transaction getTransaction() {
-        return transaction;
-    }
+	@Override
+	public Transaction getTransaction() {
+		return transaction;
+	}
 
-    @Override
-    public void setLicense(final License license) {
-        this.license = license;
-    }
+	@Override
+	public void setLicense(final License license) {
+		this.license = license;
+	}
 
-    @Override
-    public License getLicense() {
-        return license;
-    }
+	@Override
+	public License getLicense() {
+		return license;
+	}
 }
