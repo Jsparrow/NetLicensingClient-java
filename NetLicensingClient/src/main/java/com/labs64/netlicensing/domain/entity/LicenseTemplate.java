@@ -24,75 +24,79 @@ import com.labs64.netlicensing.domain.vo.LicenseType;
  * <p>
  * Properties visible via NetLicensing API:
  * <p>
- * <b>number</b> - Unique number (across all products of a vendor) that identifies the license template. Vendor can
- * assign this number when creating a license template or let NetLicensing generate one. Read-only after creation of the
- * first license from this license template.
+ * <b>number</b> - Unique number (across all products of a vendor) that
+ * identifies the license template. Vendor can assign this number when creating
+ * a license template or let NetLicensing generate one. Read-only after creation
+ * of the first license from this license template.
  * <p>
- * <b>active</b> - If set to false, the license template is disabled. Licensee can not obtain any new licenses off this
- * license template.
+ * <b>active</b> - If set to false, the license template is disabled. Licensee
+ * can not obtain any new licenses off this license template.
  * <p>
  * <b>name</b> - Name for the licensed item.
  * <p>
- * <b>licenseType</b> - type of licenses created from this license template. Supported types: "FEATURE", "TIMEVOLUME",
- * "FLOATING", "QUANTITY".
+ * <b>licenseType</b> - type of licenses created from this license template.
+ * Supported types: "FEATURE", "TIMEVOLUME", "FLOATING", "QUANTITY".
  * <p>
- * <b>price</b> - price for the license. If more than 0, it must always be accompanied by the currency specification.
+ * <b>price</b> - price for the license. If more than 0, it must always be
+ * accompanied by the currency specification.
  * <p>
- * <b>currency</b> - specifies currency for the license price. Check data types to discover which currencies are
- * supported.
+ * <b>currency</b> - specifies currency for the license price. Check data types
+ * to discover which currencies are supported.
  * <p>
- * <b>automatic</b> - If set to true, every new licensee automatically gets one license out of this license template on
- * creation. Automatic licenses must have their price set to 0.
+ * <b>automatic</b> - If set to true, every new licensee automatically gets one
+ * license out of this license template on creation. Automatic licenses must
+ * have their price set to 0.
  * <p>
- * <b>hidden</b> - If set to true, this license template is not shown in NetLicensing Shop as offered for purchase.
+ * <b>hidden</b> - If set to true, this license template is not shown in
+ * NetLicensing Shop as offered for purchase.
  * <p>
- * <b>hideLicenses</b> - If set to true, licenses from this license template are not visible to the end customer, but
- * participate in validation.
+ * <b>hideLicenses</b> - If set to true, licenses from this license template are
+ * not visible to the end customer, but participate in validation.
  * <p>
  */
 public interface LicenseTemplate extends BaseEntity {
 
-    // Methods for working with properties
+	// Methods for working with properties
 
-    String getName();
+	String getName();
 
-    void setName(String name);
+	void setName(String name);
 
-    LicenseType getLicenseType();
+	LicenseType getLicenseType();
 
-    void setLicenseType(LicenseType licenseType);
+	void setLicenseType(LicenseType licenseType);
 
-    BigDecimal getPrice();
+	BigDecimal getPrice();
 
-    void setPrice(BigDecimal price);
+	void setPrice(BigDecimal price);
 
-    Currency getCurrency();
+	Currency getCurrency();
 
-    void setCurrency(Currency currency);
+	void setCurrency(Currency currency);
 
-    Boolean getAutomatic();
+	Boolean getAutomatic();
 
-    void setAutomatic(Boolean automatic);
+	void setAutomatic(Boolean automatic);
 
-    Boolean getHidden();
+	Boolean getHidden();
 
-    void setHidden(Boolean hidden);
+	void setHidden(Boolean hidden);
 
-    Boolean getHideLicenses();
+	Boolean getHideLicenses();
 
-    void setHideLicenses(Boolean hideLicenses);
+	void setHideLicenses(Boolean hideLicenses);
 
-    // Methods for working with custom properties
+	// Methods for working with custom properties
 
-    @Deprecated
-    Map<String, String> getLicenseTemplateProperties();
+	@Deprecated
+	Map<String, String> getLicenseTemplateProperties();
 
-    // Methods for interacting with other entities
+	// Methods for interacting with other entities
 
-    ProductModule getProductModule();
+	ProductModule getProductModule();
 
-    void setProductModule(ProductModule productModule);
+	void setProductModule(ProductModule productModule);
 
-    Collection<License> getLicenses();
+	Collection<License> getLicenses();
 
 }

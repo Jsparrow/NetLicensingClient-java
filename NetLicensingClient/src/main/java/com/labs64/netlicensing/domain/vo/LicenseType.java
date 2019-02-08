@@ -12,89 +12,93 @@
  */
 package com.labs64.netlicensing.domain.vo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public enum LicenseType {
 
-    /**
-     * licenseType: feature.
-     */
-    FEATURE("FEATURE"),
+	/**
+	 * licenseType: feature.
+	 */
+	FEATURE("FEATURE"),
 
-    /**
-     * licenseType: TimeVolume.
-     */
-    TIMEVOLUME("TIMEVOLUME"),
+	/**
+	 * licenseType: TimeVolume.
+	 */
+	TIMEVOLUME("TIMEVOLUME"),
 
-    /**
-     * licenseType: TimeVolume.
-     */
-    FLOATING("FLOATING"),
+	/**
+	 * licenseType: TimeVolume.
+	 */
+	FLOATING("FLOATING"),
 
-    /**
-     * licenseType: Quantity.
-     */
-    QUANTITY("QUANTITY");
+	/**
+	 * licenseType: Quantity.
+	 */
+	QUANTITY("QUANTITY");
 
-    private final String value;
+	private static final Logger logger = LoggerFactory.getLogger(LicenseType.class);
+	private final String value;
 
-    /**
-     * Instantiates a new license type.
-     *
-     * @param licenseTypeValue
-     *            licenseType value
-     */
-    LicenseType(final String licenseTypeValue) {
-        value = licenseTypeValue;
-    }
+	/**
+	 * Instantiates a new license type.
+	 *
+	 * @param licenseTypeValue licenseType value
+	 */
+	LicenseType(final String licenseTypeValue) {
+		value = licenseTypeValue;
+	}
 
-    /**
-     * Get enum value.
-     *
-     * @return enum value
-     */
-    public String value() {
-        return value;
-    }
+	/**
+	 * Get enum value.
+	 *
+	 * @return enum value
+	 */
+	public String value() {
+		return value;
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Enum#toString()
-     */
-    @Override
-    public String toString() {
-        return value;
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Enum#toString()
+	 */
+	@Override
+	public String toString() {
+		return value;
+	}
 
-    /**
-     * Parse license type value to {@link LicenseType} enum.
-     *
-     * @param value
-     *            licenseType value
-     * @return {@link LicenseType} enum object or throws {@link IllegalArgumentException} if no corresponding
-     *         {@link LicenseType} enum object found
-     */
-    public static LicenseType parseValue(final String value) {
-        for (final LicenseType licenseType : LicenseType.values()) {
-            if (licenseType.value.equalsIgnoreCase(value)) {
-                return licenseType;
-            }
-        }
-        throw new IllegalArgumentException(value);
-    }
+	/**
+	 * Parse license type value to {@link LicenseType} enum.
+	 *
+	 * @param value licenseType value
+	 * @return {@link LicenseType} enum object or throws
+	 *         {@link IllegalArgumentException} if no corresponding
+	 *         {@link LicenseType} enum object found
+	 */
+	public static LicenseType parseValue(final String value) {
+		for (final LicenseType licenseType : LicenseType.values()) {
+			if (licenseType.value.equalsIgnoreCase(value)) {
+				return licenseType;
+			}
+		}
+		throw new IllegalArgumentException(value);
+	}
 
-    /**
-     * Parse license type value to {@link LicenseType} enum, nothrow version.
-     *
-     * @param value
-     *            licenseType value as string
-     * @return {@link LicenseType} enum object or {@code null} if argument doesn't match any of the enum values
-     */
-    public static LicenseType parseValueSafe(final String value) {
-        try {
-            return parseValue(value);
-        } catch (final IllegalArgumentException e) {
-            return null;
-        }
-    }
+	/**
+	 * Parse license type value to {@link LicenseType} enum, nothrow version.
+	 *
+	 * @param value licenseType value as string
+	 * @return {@link LicenseType} enum object or {@code null} if argument doesn't
+	 *         match any of the enum values
+	 */
+	public static LicenseType parseValueSafe(final String value) {
+		try {
+			return parseValue(value);
+		} catch (final IllegalArgumentException e) {
+			logger.error(e.getMessage(), e);
+			return null;
+		}
+	}
 
 }

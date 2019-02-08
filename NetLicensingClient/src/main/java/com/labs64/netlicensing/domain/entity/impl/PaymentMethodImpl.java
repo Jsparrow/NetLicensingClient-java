@@ -18,22 +18,23 @@ import java.util.Map;
 import com.labs64.netlicensing.domain.entity.PaymentMethod;
 
 /**
- * Default implementation of {@link com.labs64.netlicensing.domain.entity.PaymentMethod}.
+ * Default implementation of
+ * {@link com.labs64.netlicensing.domain.entity.PaymentMethod}.
  */
 public class PaymentMethodImpl extends BaseEntityImpl implements PaymentMethod {
 
-    private static final long serialVersionUID = -529417516632266683L;
+	private static final long serialVersionUID = -529417516632266683L;
 
-    /**
-     * @see BaseEntityImpl#getReservedProps()
-     */
-    public static List<String> getReservedProps() {
-        return BaseEntityImpl.getReservedProps();
-    }
+	/**
+	 * @see BaseEntityImpl#getReservedProps()
+	 */
+	public static List<String> getReservedProps() {
+		return BaseEntityImpl.getReservedProps();
+	}
 
-    @Override
-    public Map<String, String> getPaymentMethodProperties() {
-        return getProperties();
-    }
+	@Override
+	public Map<String, String> getPaymentMethodProperties() {
+		return getProperties();
+	}
 
 }

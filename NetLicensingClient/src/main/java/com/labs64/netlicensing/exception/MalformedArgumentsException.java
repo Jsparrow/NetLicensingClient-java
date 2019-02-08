@@ -17,16 +17,16 @@ package com.labs64.netlicensing.exception;
  */
 public class MalformedArgumentsException extends NetLicensingException {
 
-    private static final long serialVersionUID = -2548284543777416222L;
+	private static final long serialVersionUID = -2548284543777416222L;
 
-    /**
-     * Construct a <code>ConversionException</code> with the specified detail message.
-     * 
-     * @param msg
-     *            the detail message
-     */
-    public MalformedArgumentsException(final String msg) {
-        super(msg);
-    }
+	/**
+	 * Construct a <code>ConversionException</code> with the specified detail
+	 * message.
+	 * 
+	 * @param msg the detail message
+	 */
+	public MalformedArgumentsException(final String msg) {
+		super(msg);
+	}
 
 }
