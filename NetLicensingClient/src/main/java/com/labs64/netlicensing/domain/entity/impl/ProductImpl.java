@@ -26,171 +26,172 @@ import com.labs64.netlicensing.domain.entity.ProductDiscount;
 import com.labs64.netlicensing.domain.entity.ProductModule;
 
 /**
- * Default implementation of {@link com.labs64.netlicensing.domain.entity.Product}.
+ * Default implementation of
+ * {@link com.labs64.netlicensing.domain.entity.Product}.
  */
 public class ProductImpl extends BaseEntityImpl implements Product {
 
-    private static final long serialVersionUID = 7030811820855516068L;
+	private static final long serialVersionUID = 7030811820855516068L;
 
-    private String name;
+	private String name;
 
-    private String version;
+	private String version;
 
-    private Boolean licenseeAutoCreate;
+	private Boolean licenseeAutoCreate;
 
-    private String description;
+	private String description;
 
-    private String licensingInfo;
+	private String licensingInfo;
 
-    private Collection<ProductModule> productModules;
+	private Collection<ProductModule> productModules;
 
-    private Collection<Licensee> licensees;
+	private Collection<Licensee> licensees;
 
-    private List<ProductDiscount> productDiscounts;
+	private List<ProductDiscount> productDiscounts;
 
-    private Boolean productDiscountsTouched = false;
+	private Boolean productDiscountsTouched = false;
 
-    /**
-     * @see BaseEntityImpl#getReservedProps()
-     */
-    public static List<String> getReservedProps() {
-        final List<String> reserved = BaseEntityImpl.getReservedProps();
-        reserved.add(Constants.NAME);
-        reserved.add(Constants.VERSION);
-        reserved.add(Constants.Product.LICENSEE_AUTO_CREATE);
-        reserved.add(Constants.Product.DESCRIPTION);
-        reserved.add(Constants.Product.LICENSING_INFO);
-        reserved.add(Constants.DISCOUNT);
-        reserved.add(Constants.IN_USE);
-        return reserved;
-    }
+	/**
+	 * @see BaseEntityImpl#getReservedProps()
+	 */
+	public static List<String> getReservedProps() {
+		final List<String> reserved = BaseEntityImpl.getReservedProps();
+		reserved.add(Constants.NAME);
+		reserved.add(Constants.VERSION);
+		reserved.add(Constants.Product.LICENSEE_AUTO_CREATE);
+		reserved.add(Constants.Product.DESCRIPTION);
+		reserved.add(Constants.Product.LICENSING_INFO);
+		reserved.add(Constants.DISCOUNT);
+		reserved.add(Constants.IN_USE);
+		return reserved;
+	}
 
-    @Override
-    public String getName() {
-        return name;
-    }
+	@Override
+	public String getName() {
+		return name;
+	}
 
-    @Override
-    public void setName(final String name) {
-        this.name = name;
-    }
+	@Override
+	public void setName(final String name) {
+		this.name = name;
+	}
 
-    @Override
-    public String getVersion() {
-        return version;
-    }
+	@Override
+	public String getVersion() {
+		return version;
+	}
 
-    @Override
-    public void setVersion(final String version) {
-        this.version = version;
-    }
+	@Override
+	public void setVersion(final String version) {
+		this.version = version;
+	}
 
-    @Override
-    public Boolean getLicenseeAutoCreate() {
-        return licenseeAutoCreate;
-    }
+	@Override
+	public Boolean getLicenseeAutoCreate() {
+		return licenseeAutoCreate;
+	}
 
-    @Override
-    public void setLicenseeAutoCreate(final Boolean licenseeAutoCreate) {
-        this.licenseeAutoCreate = licenseeAutoCreate;
-    }
+	@Override
+	public void setLicenseeAutoCreate(final Boolean licenseeAutoCreate) {
+		this.licenseeAutoCreate = licenseeAutoCreate;
+	}
 
-    @Override
-    public String getDescription() {
-        return description;
-    }
+	@Override
+	public String getDescription() {
+		return description;
+	}
 
-    @Override
-    public void setDescription(final String description) {
-        this.description = description;
-    }
+	@Override
+	public void setDescription(final String description) {
+		this.description = description;
+	}
 
-    @Override
-    public String getLicensingInfo() {
-        return licensingInfo;
-    }
+	@Override
+	public String getLicensingInfo() {
+		return licensingInfo;
+	}
 
-    @Override
-    public void setLicensingInfo(final String licensingInfo) {
-        this.licensingInfo = licensingInfo;
-    }
+	@Override
+	public void setLicensingInfo(final String licensingInfo) {
+		this.licensingInfo = licensingInfo;
+	}
 
-    @Override
-    public Collection<ProductModule> getProductModules() {
-        if (productModules == null) {
-            productModules = new ArrayList<>();
-        }
-        return productModules;
-    }
+	@Override
+	public Collection<ProductModule> getProductModules() {
+		if (productModules == null) {
+			productModules = new ArrayList<>();
+		}
+		return productModules;
+	}
 
-    public void setProductModules(final Collection<ProductModule> productModules) {
-        this.productModules = productModules;
-    }
+	public void setProductModules(final Collection<ProductModule> productModules) {
+		this.productModules = productModules;
+	}
 
-    @Override
-    public Collection<Licensee> getLicensees() {
-        if (licensees == null) {
-            licensees = new ArrayList<>();
-        }
-        return licensees;
-    }
+	@Override
+	public Collection<Licensee> getLicensees() {
+		if (licensees == null) {
+			licensees = new ArrayList<>();
+		}
+		return licensees;
+	}
 
-    public void setLicensees(final Collection<Licensee> licensees) {
-        this.licensees = licensees;
-    }
+	public void setLicensees(final Collection<Licensee> licensees) {
+		this.licensees = licensees;
+	}
 
-    @Override
-    public List<ProductDiscount> getProductDiscounts() {
-        if (productDiscounts == null) {
-            productDiscounts = new ArrayList<>();
-        }
-        return productDiscounts;
-    }
+	@Override
+	public List<ProductDiscount> getProductDiscounts() {
+		if (productDiscounts == null) {
+			productDiscounts = new ArrayList<>();
+		}
+		return productDiscounts;
+	}
 
-    public void setProductDiscounts(final List<ProductDiscount> productDiscounts) {
-        this.productDiscounts = productDiscounts;
-        for (final ProductDiscount productDiscount : this.productDiscounts) {
-            productDiscount.setProduct(this);
-        }
-        productDiscountsTouched = true;
-    }
+	public void setProductDiscounts(final List<ProductDiscount> productDiscounts) {
+		this.productDiscounts = productDiscounts;
+		for (final ProductDiscount productDiscount : this.productDiscounts) {
+			productDiscount.setProduct(this);
+		}
+		productDiscountsTouched = true;
+	}
 
-    public void setProductDiscounts() {
-        this.productDiscounts = new ArrayList<>();
-        productDiscountsTouched = true;
-    }
+	public void setProductDiscounts() {
+		this.productDiscounts = new ArrayList<>();
+		productDiscountsTouched = true;
+	}
 
-    @Override
-    public void addDiscount(final ProductDiscount discount) {
-        discount.setProduct(this);
-        getProductDiscounts().add(discount);
-        productDiscountsTouched = true;
-    }
+	@Override
+	public void addDiscount(final ProductDiscount discount) {
+		discount.setProduct(this);
+		getProductDiscounts().add(discount);
+		productDiscountsTouched = true;
+	}
 
-    @Override
-    public Map<String, String> getProductProperties() {
-        return getProperties();
-    }
+	@Override
+	public Map<String, String> getProductProperties() {
+		return getProperties();
+	}
 
-    @Override
-    protected MultivaluedMap<String, Object> asPropertiesMap() {
-        final MultivaluedMap<String, Object> map = super.asPropertiesMap();
-        map.add(Constants.NAME, getName());
-        map.add(Constants.VERSION, getVersion());
-        map.add(Constants.Product.LICENSEE_AUTO_CREATE, getLicenseeAutoCreate());
-        map.add(Constants.Product.DESCRIPTION, getDescription());
-        map.add(Constants.Product.LICENSING_INFO, getLicensingInfo());
-        if (productDiscounts != null) {
-            for (final ProductDiscount productDiscount : productDiscounts) {
-                map.add(Constants.DISCOUNT, productDiscount.toString());
-            }
-        }
+	@Override
+	protected MultivaluedMap<String, Object> asPropertiesMap() {
+		final MultivaluedMap<String, Object> map = super.asPropertiesMap();
+		map.add(Constants.NAME, getName());
+		map.add(Constants.VERSION, getVersion());
+		map.add(Constants.Product.LICENSEE_AUTO_CREATE, getLicenseeAutoCreate());
+		map.add(Constants.Product.DESCRIPTION, getDescription());
+		map.add(Constants.Product.LICENSING_INFO, getLicensingInfo());
+		if (productDiscounts != null) {
+			for (final ProductDiscount productDiscount : productDiscounts) {
+				map.add(Constants.DISCOUNT, productDiscount.toString());
+			}
+		}
 
-        if (map.get(Constants.DISCOUNT) == null && productDiscountsTouched) {
-            map.add(Constants.DISCOUNT, "");
-        }
+		if (map.get(Constants.DISCOUNT) == null && productDiscountsTouched) {
+			map.add(Constants.DISCOUNT, "");
+		}
 
-        return map;
-    }
+		return map;
+	}
 
 }

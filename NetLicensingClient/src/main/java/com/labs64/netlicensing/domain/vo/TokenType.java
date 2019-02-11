@@ -17,25 +17,25 @@ package com.labs64.netlicensing.domain.vo;
  */
 public enum TokenType {
 
-    DEFAULT,
+	DEFAULT,
 
-    APIKEY,
+	APIKEY,
 
-    REGISTRATION,
+	REGISTRATION,
 
-    PASSWORDRESET,
+	PASSWORDRESET,
 
-    SHOP;
+	SHOP;
 
-    public static TokenType parseString(final String token) {
-        if (token != null) {
-            for (final TokenType tokenType : TokenType.values()) {
-                if (token.equalsIgnoreCase(tokenType.name())) {
-                    return tokenType;
-                }
-            }
-        }
-        return null;
-    }
+	public static TokenType parseString(final String token) {
+		if (token != null) {
+			for (final TokenType tokenType : TokenType.values()) {
+				if (token.equalsIgnoreCase(tokenType.name())) {
+					return tokenType;
+				}
+			}
+		}
+		return null;
+	}
 
 }

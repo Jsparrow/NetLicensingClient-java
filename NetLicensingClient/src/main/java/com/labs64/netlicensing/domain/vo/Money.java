@@ -19,6 +19,8 @@ import javax.xml.bind.DatatypeConverter;
 import org.apache.commons.lang3.StringUtils;
 
 import com.labs64.netlicensing.domain.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Holds amount of money with associated currency.
@@ -31,51 +33,56 @@ import com.labs64.netlicensing.domain.Constants;
  */
 public class Money {
 
-    private BigDecimal amount;
+	private static final Logger logger = LoggerFactory.getLogger(Money.class);
 
-    private String currencyCode;
+	private BigDecimal amount;
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
+	private String currencyCode;
 
-    public void setAmount(final BigDecimal amount) {
-        this.amount = amount;
-    }
+	public BigDecimal getAmount() {
+		return amount;
+	}
 
-    public String getCurrencyCode() {
-        return currencyCode;
-    }
+	public void setAmount(final BigDecimal amount) {
+		this.amount = amount;
+	}
 
-    public void setCurrencyCode(final String currencyCode) {
-        this.currencyCode = currencyCode;
-    }
+	public String getCurrencyCode() {
+		return currencyCode;
+	}
 
-    public static Money convertPrice(final String rawPrice, final String rawCurrency) {
-        final Money target = new Money();
-        if (StringUtils.isNotBlank(rawPrice)) {
-            try {
-                target.setAmount(DatatypeConverter.parseDecimal(rawPrice));
-            } catch (final NumberFormatException e) {
-                throw new IllegalArgumentException("'" + Constants.PRICE
-                        + "' format is not correct, expected '0.00' format");
-            }
-            if (StringUtils.isNotBlank(rawCurrency)) {
-                if (Currency.parseValueSafe(rawCurrency) == null) {
-                    throw new IllegalArgumentException("Unsupported currency!");
-                }
-                target.setCurrencyCode(rawCurrency);
-            } else {
-                throw new IllegalArgumentException("'" + Constants.PRICE + "' field must be accompanied with the '"
-                        + Constants.CURRENCY + "' field");
-            }
-        } else { // 'price' is not provided
-            if (StringUtils.isNotBlank(rawCurrency)) {
-                throw new IllegalArgumentException("'" + Constants.CURRENCY + "' field can not be used without the '"
-                        + Constants.PRICE + "' field");
-            }
-        }
-        return target;
-    }
+	public void setCurrencyCode(final String currencyCode) {
+		this.currencyCode = currencyCode;
+	}
+
+	public static Money convertPrice(final String rawPrice, final String rawCurrency) {
+		final Money target = new Money();
+		if (StringUtils.isNotBlank(rawPrice)) {
+			try {
+				target.setAmount(DatatypeConverter.parseDecimal(rawPrice));
+			} catch (final NumberFormatException e) {
+				logger.error(e.getMessage(), e);
+				throw new IllegalArgumentException(new StringBuilder().append("'").append(Constants.PRICE)
+						.append("' format is not correct, expected '0.00' format").toString());
+			}
+			if (StringUtils.isNotBlank(rawCurrency)) {
+				if (Currency.parseValueSafe(rawCurrency) == null) {
+					throw new IllegalArgumentException("Unsupported currency!");
+				}
+				target.setCurrencyCode(rawCurrency);
+			} else {
+				throw new IllegalArgumentException(new StringBuilder().append("'").append(Constants.PRICE)
+						.append("' field must be accompanied with the '").append(Constants.CURRENCY).append("' field")
+						.toString());
+			}
+		} else { // 'price' is not provided
+			if (StringUtils.isNotBlank(rawCurrency)) {
+				throw new IllegalArgumentException(new StringBuilder().append("'").append(Constants.CURRENCY)
+						.append("' field can not be used without the '").append(Constants.PRICE).append("' field")
+						.toString());
+			}
+		}
+		return target;
+	}
 
 }

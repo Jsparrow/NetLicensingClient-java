@@ -28,157 +28,158 @@ import com.labs64.netlicensing.domain.vo.TransactionSource;
 import com.labs64.netlicensing.domain.vo.TransactionStatus;
 
 /**
- * Default implementation of {@link com.labs64.netlicensing.domain.entity.Transaction}.
+ * Default implementation of
+ * {@link com.labs64.netlicensing.domain.entity.Transaction}.
  */
 public class TransactionImpl extends BaseEntityImpl implements Transaction {
 
-    private static final long serialVersionUID = 7675242025748195251L;
+	private static final long serialVersionUID = 7675242025748195251L;
 
-    private TransactionStatus status;
+	private TransactionStatus status;
 
-    private TransactionSource source;
+	private TransactionSource source;
 
-    private BigDecimal grandTotal;
+	private BigDecimal grandTotal;
 
-    private BigDecimal discount;
+	private BigDecimal discount;
 
-    private Currency currency;
+	private Currency currency;
 
-    private Date dateCreated;
+	private Date dateCreated;
 
-    private Date dateClosed;
+	private Date dateClosed;
 
-    private List<LicenseTransactionJoin> licenseTransactionJoins;
+	private List<LicenseTransactionJoin> licenseTransactionJoins;
 
-    /**
-     * @see BaseEntityImpl#getReservedProps()
-     */
-    public static List<String> getReservedProps() {
-        final List<String> reserved = BaseEntityImpl.getReservedProps();
-        reserved.add(Constants.Transaction.SOURCE);
-        reserved.add(Constants.Transaction.STATUS);
-        reserved.add(Constants.Transaction.DATE_CREATED);
-        reserved.add(Constants.Transaction.DATE_CLOSED);
-        reserved.add(Constants.IN_USE);
-        reserved.add(Constants.Transaction.GRAND_TOTAL);
-        reserved.add(Constants.DISCOUNT);
-        reserved.add(Constants.CURRENCY);
-        return reserved;
-    }
+	/**
+	 * @see BaseEntityImpl#getReservedProps()
+	 */
+	public static List<String> getReservedProps() {
+		final List<String> reserved = BaseEntityImpl.getReservedProps();
+		reserved.add(Constants.Transaction.SOURCE);
+		reserved.add(Constants.Transaction.STATUS);
+		reserved.add(Constants.Transaction.DATE_CREATED);
+		reserved.add(Constants.Transaction.DATE_CLOSED);
+		reserved.add(Constants.IN_USE);
+		reserved.add(Constants.Transaction.GRAND_TOTAL);
+		reserved.add(Constants.DISCOUNT);
+		reserved.add(Constants.CURRENCY);
+		return reserved;
+	}
 
-    @Override
-    public TransactionStatus getStatus() {
-        return status;
-    }
+	@Override
+	public TransactionStatus getStatus() {
+		return status;
+	}
 
-    @Override
-    public void setStatus(final TransactionStatus status) {
-        this.status = status;
-    }
+	@Override
+	public void setStatus(final TransactionStatus status) {
+		this.status = status;
+	}
 
-    @Override
-    public TransactionSource getSource() {
-        return source;
-    }
+	@Override
+	public TransactionSource getSource() {
+		return source;
+	}
 
-    @Override
-    public void setSource(final TransactionSource source) {
-        this.source = source;
-    }
+	@Override
+	public void setSource(final TransactionSource source) {
+		this.source = source;
+	}
 
-    @Override
-    public BigDecimal getGrandTotal() {
-        return grandTotal;
-    }
+	@Override
+	public BigDecimal getGrandTotal() {
+		return grandTotal;
+	}
 
-    @Override
-    public void setGrandTotal(final BigDecimal grandTotal) {
-        this.grandTotal = grandTotal;
-    }
+	@Override
+	public void setGrandTotal(final BigDecimal grandTotal) {
+		this.grandTotal = grandTotal;
+	}
 
-    @Override
-    public BigDecimal getDiscount() {
-        return discount;
-    }
+	@Override
+	public BigDecimal getDiscount() {
+		return discount;
+	}
 
-    @Override
-    public void setDiscount(final BigDecimal discount) {
-        this.discount = discount;
-    }
+	@Override
+	public void setDiscount(final BigDecimal discount) {
+		this.discount = discount;
+	}
 
-    @Override
-    public Currency getCurrency() {
-        return currency;
-    }
+	@Override
+	public Currency getCurrency() {
+		return currency;
+	}
 
-    @Override
-    public void setCurrency(final Currency currency) {
-        this.currency = currency;
-    }
+	@Override
+	public void setCurrency(final Currency currency) {
+		this.currency = currency;
+	}
 
-    @Override
-    public Date getDateCreated() {
-        if (dateCreated == null) {
-            return null;
-        } else {
-            return new Date(dateCreated.getTime());
-        }
-    }
+	@Override
+	public Date getDateCreated() {
+		if (dateCreated == null) {
+			return null;
+		} else {
+			return new Date(dateCreated.getTime());
+		}
+	}
 
-    @Override
-    public void setDateCreated(final Date dateCreated) {
-        if (dateCreated == null) {
-            this.dateCreated = new Date();
-        } else {
-            this.dateCreated = new Date(dateCreated.getTime());
-        }
-    }
+	@Override
+	public void setDateCreated(final Date dateCreated) {
+		if (dateCreated == null) {
+			this.dateCreated = new Date();
+		} else {
+			this.dateCreated = new Date(dateCreated.getTime());
+		}
+	}
 
-    @Override
-    public Date getDateClosed() {
-        if (dateClosed == null) {
-            return null;
-        } else {
-            return new Date(dateClosed.getTime());
-        }
-    }
+	@Override
+	public Date getDateClosed() {
+		if (dateClosed == null) {
+			return null;
+		} else {
+			return new Date(dateClosed.getTime());
+		}
+	}
 
-    @Override
-    public void setDateClosed(final Date dateClosed) {
-        if (dateClosed == null) {
-            this.dateClosed = null;
-        } else {
-            this.dateClosed = new Date(dateClosed.getTime());
-        }
-    }
+	@Override
+	public void setDateClosed(final Date dateClosed) {
+		if (dateClosed == null) {
+			this.dateClosed = null;
+		} else {
+			this.dateClosed = new Date(dateClosed.getTime());
+		}
+	}
 
-    @Override
-    public Map<String, String> getTransactionProperties() {
-        return getProperties();
-    }
+	@Override
+	public Map<String, String> getTransactionProperties() {
+		return getProperties();
+	}
 
-    @Override
-    protected MultivaluedMap<String, Object> asPropertiesMap() {
-        final MultivaluedMap<String, Object> map = super.asPropertiesMap();
-        map.add(Constants.Transaction.STATUS, getStatus());
-        map.add(Constants.Transaction.SOURCE, getSource());
-        map.add(Constants.Transaction.GRAND_TOTAL, getGrandTotal());
-        map.add(Constants.DISCOUNT, getDiscount());
-        map.add(Constants.CURRENCY, getCurrency());
-        return map;
-    }
+	@Override
+	protected MultivaluedMap<String, Object> asPropertiesMap() {
+		final MultivaluedMap<String, Object> map = super.asPropertiesMap();
+		map.add(Constants.Transaction.STATUS, getStatus());
+		map.add(Constants.Transaction.SOURCE, getSource());
+		map.add(Constants.Transaction.GRAND_TOTAL, getGrandTotal());
+		map.add(Constants.DISCOUNT, getDiscount());
+		map.add(Constants.CURRENCY, getCurrency());
+		return map;
+	}
 
-    @Override
-    public List<LicenseTransactionJoin> getLicenseTransactionJoins() {
-        if (licenseTransactionJoins == null) {
-            licenseTransactionJoins = new ArrayList<>();
-        }
-        return licenseTransactionJoins;
-    }
+	@Override
+	public List<LicenseTransactionJoin> getLicenseTransactionJoins() {
+		if (licenseTransactionJoins == null) {
+			licenseTransactionJoins = new ArrayList<>();
+		}
+		return licenseTransactionJoins;
+	}
 
-    @Override
-    public void setLicenseTransactionJoins(final List<LicenseTransactionJoin> licenseTransactionJoins) {
-        this.licenseTransactionJoins = licenseTransactionJoins;
-    }
+	@Override
+	public void setLicenseTransactionJoins(final List<LicenseTransactionJoin> licenseTransactionJoins) {
+		this.licenseTransactionJoins = licenseTransactionJoins;
+	}
 
 }
