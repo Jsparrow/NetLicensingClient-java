@@ -16,17 +16,16 @@ package com.labs64.netlicensing.provider.auth;
  */
 public class TokenAuthentication implements Authentication {
 
-    private final String token;
+	private final String token;
 
-    /**
-     * Token auth constructor.
-     * 
-     * @param token
-     *            authentication token
-     */
-    public TokenAuthentication(final String token) {
-        this.token = token;
-    }
+	/**
+	 * Token auth constructor.
+	 * 
+	 * @param token authentication token
+	 */
+	public TokenAuthentication(final String token) {
+		this.token = token;
+	}
 
 	@Override
 	public String getUsername() {

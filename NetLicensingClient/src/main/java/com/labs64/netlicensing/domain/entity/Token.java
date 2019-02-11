@@ -22,23 +22,23 @@ import com.labs64.netlicensing.domain.vo.TokenType;
  */
 public interface Token extends BaseEntity {
 
-    // Methods for working with properties
+	// Methods for working with properties
 
-    String getVendorNumber();
+	String getVendorNumber();
 
-    void setVendorNumber(String vendorNumber);
+	void setVendorNumber(String vendorNumber);
 
-    Date getExpirationTime();
+	Date getExpirationTime();
 
-    void setExpirationTime(Date expirationTime);
+	void setExpirationTime(Date expirationTime);
 
-    TokenType getTokenType();
+	TokenType getTokenType();
 
-    void setTokenType(TokenType tokenType);
+	void setTokenType(TokenType tokenType);
 
-    // Methods for working with custom properties
+	// Methods for working with custom properties
 
-    @Deprecated
-    Map<String, String> getTokenProperties();
+	@Deprecated
+	Map<String, String> getTokenProperties();
 
 }

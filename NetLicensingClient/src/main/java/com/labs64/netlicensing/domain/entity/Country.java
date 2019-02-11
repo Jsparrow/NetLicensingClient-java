@@ -30,19 +30,19 @@ import java.math.BigDecimal;
  */
 public interface Country extends BaseEntity {
 
-    void setCode(final String code);
+	void setCode(final String code);
 
-    String getCode();
+	String getCode();
 
-    void setName(final String name);
+	void setName(final String name);
 
-    String getName();
+	String getName();
 
-    void setVatPercent(final BigDecimal vat);
+	void setVatPercent(final BigDecimal vat);
 
-    BigDecimal getVatPercent();
+	BigDecimal getVatPercent();
 
-    void setIsEu(final boolean isEu);
+	void setIsEu(final boolean isEu);
 
-    boolean getIsEu();
+	boolean getIsEu();
 }

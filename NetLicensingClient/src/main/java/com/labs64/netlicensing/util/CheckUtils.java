@@ -19,66 +19,56 @@ import com.labs64.netlicensing.exception.MalformedArgumentsException;
  */
 public class CheckUtils {
 
-    /**
-     * Ensures that an object reference is not null.
-     *
-     * @param object
-     *            object to check
-     * @param msg
-     *            exception message
-     * @throws MalformedArgumentsException
-     *             if object is null
-     */
-    private static void notNull(final Object object, final String msg) throws MalformedArgumentsException {
-        if (object == null) {
-            throw new MalformedArgumentsException(msg);
-        }
-    }
+	/**
+	 * Ensures that an object reference is not null.
+	 *
+	 * @param object object to check
+	 * @param msg    exception message
+	 * @throws MalformedArgumentsException if object is null
+	 */
+	private static void notNull(final Object object, final String msg) throws MalformedArgumentsException {
+		if (object == null) {
+			throw new MalformedArgumentsException(msg);
+		}
+	}
 
-    /**
-     * Ensures that a string is not null or empty.
-     *
-     * @param string
-     *            string to check
-     * @param msg
-     *            exception message
-     * @throws MalformedArgumentsException
-     *             if string is null or empty
-     */
-    private static void notEmpty(final String string, final String msg) throws MalformedArgumentsException {
-        if (string == null || string.length() == 0) {
-            throw new MalformedArgumentsException(msg);
-        }
-    }
+	/**
+	 * Ensures that a string is not null or empty.
+	 *
+	 * @param string string to check
+	 * @param msg    exception message
+	 * @throws MalformedArgumentsException if string is null or empty
+	 */
+	private static void notEmpty(final String string, final String msg) throws MalformedArgumentsException {
+		if (string == null || string.isEmpty()) {
+			throw new MalformedArgumentsException(msg);
+		}
+	}
 
-    /**
-     * Ensures that an object reference passed as a parameter to the calling method is not null.
-     *
-     * @param parameter
-     *            param to check
-     * @param parameterName
-     *            name of the parameter
-     * @throws MalformedArgumentsException
-     *             if parameter is null
-     */
-    public static void paramNotNull(final Object parameter, final String parameterName)
-            throws MalformedArgumentsException {
-        notNull(parameter, String.format("Parameter '%s' cannot be null", parameterName));
-    }
+	/**
+	 * Ensures that an object reference passed as a parameter to the calling method
+	 * is not null.
+	 *
+	 * @param parameter     param to check
+	 * @param parameterName name of the parameter
+	 * @throws MalformedArgumentsException if parameter is null
+	 */
+	public static void paramNotNull(final Object parameter, final String parameterName)
+			throws MalformedArgumentsException {
+		notNull(parameter, String.format("Parameter '%s' cannot be null", parameterName));
+	}
 
-    /**
-     * Ensures that a string passed as a parameter to the calling method is not null or empty.
-     *
-     * @param parameter
-     *            param to check
-     * @param parameterName
-     *            name of the parameter
-     * @throws MalformedArgumentsException
-     *             if parameter is null or empty
-     */
-    public static void paramNotEmpty(final String parameter, final String parameterName)
-            throws MalformedArgumentsException {
-        notEmpty(parameter, String.format("Parameter '%s' cannot be null or empty string", parameterName));
-    }
+	/**
+	 * Ensures that a string passed as a parameter to the calling method is not null
+	 * or empty.
+	 *
+	 * @param parameter     param to check
+	 * @param parameterName name of the parameter
+	 * @throws MalformedArgumentsException if parameter is null or empty
+	 */
+	public static void paramNotEmpty(final String parameter, final String parameterName)
+			throws MalformedArgumentsException {
+		notEmpty(parameter, String.format("Parameter '%s' cannot be null or empty string", parameterName));
+	}
 
 }

@@ -4,24 +4,24 @@ import java.math.BigDecimal;
 
 public interface ProductDiscount extends Comparable<ProductDiscount> {
 
-    void setProduct(final Product product);
+	void setProduct(final Product product);
 
-    Product getProduct();
+	Product getProduct();
 
-    void setTotalPrice(final BigDecimal totalPrice);
+	void setTotalPrice(final BigDecimal totalPrice);
 
-    BigDecimal getTotalPrice();
+	BigDecimal getTotalPrice();
 
-    void setCurrency(final String currency);
+	void setCurrency(final String currency);
 
-    String getCurrency();
+	String getCurrency();
 
-    void setAmountFix(final BigDecimal amountFix);
+	void setAmountFix(final BigDecimal amountFix);
 
-    BigDecimal getAmountFix();
+	BigDecimal getAmountFix();
 
-    void setAmountPercent(final BigDecimal amountPercent);
+	void setAmountPercent(final BigDecimal amountPercent);
 
-    BigDecimal getAmountPercent();
+	BigDecimal getAmountPercent();
 
 }

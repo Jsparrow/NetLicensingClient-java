@@ -27,132 +27,133 @@ import com.labs64.netlicensing.domain.entity.Licensee;
 import com.labs64.netlicensing.domain.vo.Currency;
 
 /**
- * Default implementation of {@link com.labs64.netlicensing.domain.entity.License}.
+ * Default implementation of
+ * {@link com.labs64.netlicensing.domain.entity.License}.
  */
 public class LicenseImpl extends BaseEntityImpl implements License {
 
-    private static final long serialVersionUID = -1255007603439878867L;
+	private static final long serialVersionUID = -1255007603439878867L;
 
-    private String name;
+	private String name;
 
-    private BigDecimal price;
+	private BigDecimal price;
 
-    private Currency currency;
+	private Currency currency;
 
-    private Boolean hidden = Boolean.FALSE;
+	private Boolean hidden = Boolean.FALSE;
 
-    private Licensee licensee;
+	private Licensee licensee;
 
-    private LicenseTemplate licenseTemplate;
+	private LicenseTemplate licenseTemplate;
 
-    private List<LicenseTransactionJoin> licenseTransactionJoins;
+	private List<LicenseTransactionJoin> licenseTransactionJoins;
 
-    /**
-     * @see BaseEntityImpl#getReservedProps()
-     */
-    public static List<String> getReservedProps() {
-        final List<String> reserved = BaseEntityImpl.getReservedProps();
-        reserved.add(Constants.NAME);
-        reserved.add(Constants.PRICE);
-        reserved.add(Constants.CURRENCY);
-        reserved.add(Constants.License.HIDDEN);
-        reserved.add(Constants.Licensee.LICENSEE_NUMBER); // maps to 'licensee'
-        reserved.add(Constants.LicenseTemplate.LICENSE_TEMPLATE_NUMBER); // maps to 'licenseTemplate'
-        reserved.add(Constants.Transaction.TRANSACTION_NUMBER); // maps to 'licenseTransactionJoins'
-        reserved.add(Constants.Shop.PROP_SHOP_LICENSE_ID); // used by shop, therefore disallowed for user
-        reserved.add(Constants.Shop.PROP_SHOPPING_CART); // used by shop, therefore disallowed for user
-        reserved.add(Constants.Vendor.VENDOR_NUMBER); // used by shop, therefore disallowed for user
-        return reserved;
-    }
+	/**
+	 * @see BaseEntityImpl#getReservedProps()
+	 */
+	public static List<String> getReservedProps() {
+		final List<String> reserved = BaseEntityImpl.getReservedProps();
+		reserved.add(Constants.NAME);
+		reserved.add(Constants.PRICE);
+		reserved.add(Constants.CURRENCY);
+		reserved.add(Constants.License.HIDDEN);
+		reserved.add(Constants.Licensee.LICENSEE_NUMBER); // maps to 'licensee'
+		reserved.add(Constants.LicenseTemplate.LICENSE_TEMPLATE_NUMBER); // maps to 'licenseTemplate'
+		reserved.add(Constants.Transaction.TRANSACTION_NUMBER); // maps to 'licenseTransactionJoins'
+		reserved.add(Constants.Shop.PROP_SHOP_LICENSE_ID); // used by shop, therefore disallowed for user
+		reserved.add(Constants.Shop.PROP_SHOPPING_CART); // used by shop, therefore disallowed for user
+		reserved.add(Constants.Vendor.VENDOR_NUMBER); // used by shop, therefore disallowed for user
+		return reserved;
+	}
 
-    @Override
-    public String getName() {
-        return name;
-    }
+	@Override
+	public String getName() {
+		return name;
+	}
 
-    @Override
-    public void setName(final String name) {
-        this.name = name;
-    }
+	@Override
+	public void setName(final String name) {
+		this.name = name;
+	}
 
-    @Override
-    public BigDecimal getPrice() {
-        return price;
-    }
+	@Override
+	public BigDecimal getPrice() {
+		return price;
+	}
 
-    @Override
-    public void setPrice(final BigDecimal price) {
-        this.price = price;
-    }
+	@Override
+	public void setPrice(final BigDecimal price) {
+		this.price = price;
+	}
 
-    @Override
-    public Currency getCurrency() {
-        return currency;
-    }
+	@Override
+	public Currency getCurrency() {
+		return currency;
+	}
 
-    @Override
-    public void setCurrency(final Currency currency) {
-        this.currency = currency;
-    }
+	@Override
+	public void setCurrency(final Currency currency) {
+		this.currency = currency;
+	}
 
-    @Override
-    public Boolean getHidden() {
-        return hidden;
-    }
+	@Override
+	public Boolean getHidden() {
+		return hidden;
+	}
 
-    @Override
-    public void setHidden(final Boolean hidden) {
-        this.hidden = hidden;
-    }
+	@Override
+	public void setHidden(final Boolean hidden) {
+		this.hidden = hidden;
+	}
 
-    @Override
-    public Licensee getLicensee() {
-        return licensee;
-    }
+	@Override
+	public Licensee getLicensee() {
+		return licensee;
+	}
 
-    @Override
-    public void setLicensee(final Licensee licensee) {
-        licensee.getLicenses().add(this);
-        this.licensee = licensee;
-    }
+	@Override
+	public void setLicensee(final Licensee licensee) {
+		licensee.getLicenses().add(this);
+		this.licensee = licensee;
+	}
 
-    @Override
-    public LicenseTemplate getLicenseTemplate() {
-        return licenseTemplate;
-    }
+	@Override
+	public LicenseTemplate getLicenseTemplate() {
+		return licenseTemplate;
+	}
 
-    @Override
-    public void setLicenseTemplate(final LicenseTemplate licenseTemplate) {
-        licenseTemplate.getLicenses().add(this);
-        this.licenseTemplate = licenseTemplate;
-    }
+	@Override
+	public void setLicenseTemplate(final LicenseTemplate licenseTemplate) {
+		licenseTemplate.getLicenses().add(this);
+		this.licenseTemplate = licenseTemplate;
+	}
 
-    @Override
-    public Map<String, String> getLicenseProperties() {
-        return getProperties();
-    }
+	@Override
+	public Map<String, String> getLicenseProperties() {
+		return getProperties();
+	}
 
-    @Override
-    protected MultivaluedMap<String, Object> asPropertiesMap() {
-        final MultivaluedMap<String, Object> map = super.asPropertiesMap();
-        map.add(Constants.NAME, getName());
-        map.add(Constants.PRICE, getPrice());
-        map.add(Constants.CURRENCY, getCurrency());
-        map.add(Constants.License.HIDDEN, getHidden());
-        return map;
-    }
+	@Override
+	protected MultivaluedMap<String, Object> asPropertiesMap() {
+		final MultivaluedMap<String, Object> map = super.asPropertiesMap();
+		map.add(Constants.NAME, getName());
+		map.add(Constants.PRICE, getPrice());
+		map.add(Constants.CURRENCY, getCurrency());
+		map.add(Constants.License.HIDDEN, getHidden());
+		return map;
+	}
 
-    @Override
-    public List<LicenseTransactionJoin> getLicenseTransactionJoins() {
-        if (licenseTransactionJoins == null) {
-            licenseTransactionJoins = new ArrayList<>();
-        }
-        return licenseTransactionJoins;
-    }
+	@Override
+	public List<LicenseTransactionJoin> getLicenseTransactionJoins() {
+		if (licenseTransactionJoins == null) {
+			licenseTransactionJoins = new ArrayList<>();
+		}
+		return licenseTransactionJoins;
+	}
 
-    @Override
-    public void setLicenseTransactionJoins(final List<LicenseTransactionJoin> licenseTransactionJoins) {
-        this.licenseTransactionJoins = licenseTransactionJoins;
-    }
+	@Override
+	public void setLicenseTransactionJoins(final List<LicenseTransactionJoin> licenseTransactionJoins) {
+		this.licenseTransactionJoins = licenseTransactionJoins;
+	}
 
 }

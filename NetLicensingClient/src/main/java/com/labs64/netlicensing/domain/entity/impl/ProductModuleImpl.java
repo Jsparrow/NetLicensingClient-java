@@ -25,86 +25,87 @@ import com.labs64.netlicensing.domain.entity.Product;
 import com.labs64.netlicensing.domain.entity.ProductModule;
 
 /**
- * Default implementation of {@link com.labs64.netlicensing.domain.entity.ProductModule}.
+ * Default implementation of
+ * {@link com.labs64.netlicensing.domain.entity.ProductModule}.
  */
 public class ProductModuleImpl extends BaseEntityImpl implements ProductModule {
 
-    private static final long serialVersionUID = 6327895102315403718L;
+	private static final long serialVersionUID = 6327895102315403718L;
 
-    private Product product;
+	private Product product;
 
-    private String name;
+	private String name;
 
-    private String licensingModel;
+	private String licensingModel;
 
-    private Collection<LicenseTemplate> licenseTemplates;
+	private Collection<LicenseTemplate> licenseTemplates;
 
-    /**
-     * @see BaseEntityImpl#getReservedProps()
-     */
-    public static List<String> getReservedProps() {
-        final List<String> reserved = BaseEntityImpl.getReservedProps();
-        reserved.add(Constants.NAME);
-        reserved.add(Constants.ProductModule.LICENSING_MODEL);
-        reserved.add(Constants.Product.PRODUCT_NUMBER);
-        reserved.add(Constants.IN_USE);
-        return reserved;
-    }
+	/**
+	 * @see BaseEntityImpl#getReservedProps()
+	 */
+	public static List<String> getReservedProps() {
+		final List<String> reserved = BaseEntityImpl.getReservedProps();
+		reserved.add(Constants.NAME);
+		reserved.add(Constants.ProductModule.LICENSING_MODEL);
+		reserved.add(Constants.Product.PRODUCT_NUMBER);
+		reserved.add(Constants.IN_USE);
+		return reserved;
+	}
 
-    @Override
-    public Product getProduct() {
-        return product;
-    }
+	@Override
+	public Product getProduct() {
+		return product;
+	}
 
-    @Override
-    public void setProduct(final Product product) {
-        product.getProductModules().add(this);
-        this.product = product;
-    }
+	@Override
+	public void setProduct(final Product product) {
+		product.getProductModules().add(this);
+		this.product = product;
+	}
 
-    @Override
-    public String getName() {
-        return name;
-    }
+	@Override
+	public String getName() {
+		return name;
+	}
 
-    @Override
-    public void setName(final String name) {
-        this.name = name;
-    }
+	@Override
+	public void setName(final String name) {
+		this.name = name;
+	}
 
-    @Override
-    public String getLicensingModel() {
-        return licensingModel;
-    }
+	@Override
+	public String getLicensingModel() {
+		return licensingModel;
+	}
 
-    @Override
-    public void setLicensingModel(final String licensingModel) {
-        this.licensingModel = licensingModel;
-    }
+	@Override
+	public void setLicensingModel(final String licensingModel) {
+		this.licensingModel = licensingModel;
+	}
 
-    @Override
-    public Collection<LicenseTemplate> getLicenseTemplates() {
-        if (licenseTemplates == null) {
-            licenseTemplates = new ArrayList<LicenseTemplate>();
-        }
-        return licenseTemplates;
-    }
+	@Override
+	public Collection<LicenseTemplate> getLicenseTemplates() {
+		if (licenseTemplates == null) {
+			licenseTemplates = new ArrayList<>();
+		}
+		return licenseTemplates;
+	}
 
-    public void setLicenseTemplates(final Collection<LicenseTemplate> licenseTemplates) {
-        this.licenseTemplates = licenseTemplates;
-    }
+	public void setLicenseTemplates(final Collection<LicenseTemplate> licenseTemplates) {
+		this.licenseTemplates = licenseTemplates;
+	}
 
-    @Override
-    public Map<String, String> getProductModuleProperties() {
-        return getProperties();
-    }
+	@Override
+	public Map<String, String> getProductModuleProperties() {
+		return getProperties();
+	}
 
-    @Override
-    protected MultivaluedMap<String, Object> asPropertiesMap() {
-        final MultivaluedMap<String, Object> map = super.asPropertiesMap();
-        map.add(Constants.NAME, getName());
-        map.add(Constants.ProductModule.LICENSING_MODEL, getLicensingModel());
-        return map;
-    }
+	@Override
+	protected MultivaluedMap<String, Object> asPropertiesMap() {
+		final MultivaluedMap<String, Object> map = super.asPropertiesMap();
+		map.add(Constants.NAME, getName());
+		map.add(Constants.ProductModule.LICENSING_MODEL, getLicensingModel());
+		return map;
+	}
 
 }

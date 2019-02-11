@@ -19,19 +19,19 @@ import javax.xml.bind.DatatypeConverter;
 
 public class DateUtils {
 
-    public static Calendar getCurrentDate() {
-        return Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-    }
+	public static Calendar getCurrentDate() {
+		return Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+	}
 
-    public static Calendar parseDate(final String dateTime) {
-        Calendar dateTimeCl = DatatypeConverter.parseDateTime(dateTime);
-        dateTimeCl.setTimeZone(TimeZone.getTimeZone("UTC"));
-        return dateTimeCl;
-    }
+	public static Calendar parseDate(final String dateTime) {
+		Calendar dateTimeCl = DatatypeConverter.parseDateTime(dateTime);
+		dateTimeCl.setTimeZone(TimeZone.getTimeZone("UTC"));
+		return dateTimeCl;
+	}
 
-    public static String printDate(final Calendar date) {
-        date.setTimeZone(TimeZone.getTimeZone("UTC"));
-        return DatatypeConverter.printDateTime(date);
-    }
+	public static String printDate(final Calendar date) {
+		date.setTimeZone(TimeZone.getTimeZone("UTC"));
+		return DatatypeConverter.printDateTime(date);
+	}
 
 }
